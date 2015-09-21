@@ -1,0 +1,124 @@
+% !TeX spellcheck = russian_english
+% !TeX encoding = UTF-8
+\documentclass[a4paper, fleqn]{article}
+
+\usepackage{indentfirst} % Красная строка
+\usepackage[T2A]{fontenc} % Поддержка русских букв
+\usepackage[utf8]{inputenc} % Кодировка utf8
+\usepackage[russian]{babel} % руссификация
+\usepackage{amssymb} % дополнительные символы
+\usepackage{textcomp} % дополнительные текстовые символы
+\usepackage{amsmath} % матрицы
+\usepackage{pdfpages}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+%\ifx\pdfoutput\undefined
+%\usepackage{graphicx}
+%\else
+%\usepackage[pdftex]{graphicx}
+%\fi
+
+\textwidth = 16 cm
+\oddsidemargin= 0 cm
+\evensidemargin= 1 cm
+
+
+% \abovedisplayskip = 0 pt %.2\abovedisplayskip
+% \belowdisplayskip = .2\belowdisplayskip
+% \abovedisplayshortskip=.2\abovedisplayshortskip
+% \belowdisplayshortskip=.2\belowdisplayshortskip
+% \topsep= 0 pt
+
+\setlength{\mathindent}{1.2 cm}
+% \setlength{\topsep}{0 pt}
+% \setlength{\abovedisplayskip}{0 pt}
+\pgfplotsset{major grid style={very thick}}
+\pgfplotsset{myaxis/.style = {title=Мой рисунок,
+	minor tick num = 4,
+	xlabel={$x$,\,м},
+	ylabel={$y$,\,A},
+	grid={both},
+	axis x line=middle,
+	axis y line=middle,
+	scaled ticks=true,
+	legend pos = outer north east}}
+%\pgfplotsset{regression/.style = {black, solid, mark=none, y={create col/linear regression={y}}}}
+
+% \clubpenalty = 5000 % запрет висячих строк
+% \widowpenalty = 5000
+\binoppenalty=10000
+\relpenalty=10000
+
+% собственные команды и окружения
+
+% \newcommand*{\spt}[2][ени]{простран\-ств#2-врем#1}
+% \newcommand*{\ks}[1]{$K$-систем#1} % учитывать пробел!
+% \newcommand*{\kss}[1]{$K'$-систем#1} % учитывать пробел!
+\newenvironment{example}[1][]{\medskip \noindent \textbf{Пример. #1}\par \nopagebreak}{\medskip \par} % окружение-"пример"
+
+
+\title{Лекция \textnumero\,2}
+	% {\huge \vspace{3 cm}}}
+
+\author{}
+
+\date{}
+
+\begin{document}
+	\maketitle
+	\subsection*{Преимущества и недостатки языка программирования Python}
+		Достоинства:
+		\begin{enumerate}
+			\item Современность.
+			
+			Встроенно очень много удобных методик программирования.
+			
+			\item Универсальность.
+			
+			На этом языке можно программировать любое приложение от скрипта операционной системы до игры на мобильном телефоне.
+			
+			\item Богатая стандартная библиотека.
+			
+			В ней предусмотренно огромное количество функций, включая работу с сетями и математическими выражениями.
+			
+			\item Кроссплатформенность
+			
+			Интерпретатор Python может работать в любой операционной системе, на компьютерах с разной архитектурой.
+			
+			\item Интерпретируемость
+			
+			Одним из следствий интерпретируемости является то, что в переменную можно сохранять данные разных форматов. 
+			
+			\begin{example}
+				$x = 123$  \# целое число \\
+				$x = 'python'$  \# строка	
+			\end{example}
+		\end{enumerate}
+		
+	\subsection* {Ссылочная модель данных в Python}
+	
+		В Python нет операции присваивания. Запись\\
+		$x = 123$ \\
+		означает, что объект 123 связывается с ссылкой x. А сама операция является связыванием объекта и ссылки.
+		Кусок кода \\
+		$x = int(x)$ \\
+		будет выполняться следующим образом. Сначала выполнится выражение стоящее справа, затем порожденный им объект, сохранится в некоторой области памяти, вообще говоря, отличающейся от того участка, на который указывал $x$ ранее. В заключении ссылка $x$ связывается с этим новым объектом.
+		
+		При этом старый объект удаляется сборщиком мусора, если на него больше нет ссылок.
+		
+	\subsection*{Отличия языков программирования Python2 и Python3}
+	
+		При развитии и улучшении языков программирования часто бывает необходимо кардинально изменить концепции привычных вещей. При таком переходе теряется совместимость старых и новых версий языка. Так произошло с Python2 и Python3. 
+		
+		\begin{example}
+			
+			функция input() в этих версиях языка ведет себя по разному. Так в Python2 выражение\\
+			$x = input('5 + 3')$\\
+			вычислит значение суммы и сохранит его в $x$.
+			В Python3 выражение это же выражение выведет на экран\\
+			$5 + 3$\\
+			а затем считает данные с клавиатуры и сохранит их в $x$ в виде строки.
+			
+		\end{example}
+		
+\end{document}
