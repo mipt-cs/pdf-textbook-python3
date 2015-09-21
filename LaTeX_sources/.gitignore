@@ -1,1 +1,4 @@
-*/lection*.log
+*.aux
+*.log
+*.synctex.gz
+
