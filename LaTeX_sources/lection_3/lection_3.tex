@@ -9,17 +9,13 @@
 \usepackage{amssymb} % дополнительные символы
 \usepackage{textcomp} % дополнительные текстовые символы
 \usepackage{amsmath} % матрицы
-\usepackage{pdfpages}
-\usepackage{pgfplots}
-\usepackage{pgfplotstable}
+%\usepackage{pdfpages}
+%\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
 \usepackage{listings}
+% листинги
+\lstset{language=Python, tabsize=4, language=Python}
 
-% \input{listings-python.prf}
-%\ifx\pdfoutput\undefined
-%\usepackage{graphicx}
-%\else
-%\usepackage[pdftex]{graphicx}
-%\fi
 
 \textwidth = 16 cm
 \oddsidemargin= 0 cm
@@ -32,20 +28,9 @@
 % \belowdisplayshortskip=.2\belowdisplayshortskip
 % \topsep= 0 pt
 
-\setlength{\mathindent}{1.2 cm}
+% \setlength{\mathindent}{1.2 cm}
 % \setlength{\topsep}{0 pt}
 % \setlength{\abovedisplayskip}{0 pt}
-\pgfplotsset{major grid style={very thick}}
-\pgfplotsset{myaxis/.style = {title=Мой рисунок,
-		minor tick num = 4,
-		xlabel={$x$,\,м},
-		ylabel={$y$,\,A},
-		grid={both},
-		axis x line=middle,
-		axis y line=middle,
-		scaled ticks=true,
-		legend pos = outer north east}}
-%\pgfplotsset{regression/.style = {black, solid, mark=none, y={create col/linear regression={y}}}}
 
 % \clubpenalty = 5000 % запрет висячих строк
 % \widowpenalty = 5000
@@ -54,13 +39,7 @@
 
 % собственные команды и окружения
 
-% \newcommand*{\spt}[2][ени]{простран\-ств#2-врем#1}
-% \newcommand*{\ks}[1]{$K$-систем#1} % учитывать пробел!
-% \newcommand*{\kss}[1]{$K'$-систем#1} % учитывать пробел!
 \newenvironment{example}[1][]{\medskip \noindent \textbf{Пример. #1}\par \nopagebreak}{\medskip \par} % окружение-"пример"
-\newcommand*{\py}{Python}
-
-\lstset{language=Python, tabsize=4, language=Python}
 
 
 \title{Лекция \textnumero\,3}
@@ -85,7 +64,8 @@
 	\[12345_{10} = 10000+2000+300+40+5 = 1*10^{4} + 2*10^3+3*10^2 + 4*10^1 + 5*10^0\]
 	а также в двоичной
 	\[1010101_2 = 2^6+2^4+2^2+2^0 = 64+16+4+1 = 85\]
-	Стоит отметить, что в двоичной системе таблицы умножения и сложения выглядят очень просто.  
+	Стоит отметить, что в двоичной системе таблицы умножения и сложения выглядят очень просто.
+	\qquad { } \\ 
 	\begin{tabular}{c|cc}
 		$\times$ & 0 & 1 \\
 		\hline
@@ -99,7 +79,7 @@
 		0 & 0 & 1 \\
 		1 & 1 & $10_2$
 	\end{tabular}
-	
+	\\
 	% СНОСКА: 12 vs 10
 	Также она является  наиболее удобной для компьютера.
 	
