@@ -1,0 +1,1 @@
+pandoc -f rst -t latex -o lab3.tex lab3.rst

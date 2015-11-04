@@ -1,0 +1,1217 @@
+\section{Черепашка}\label{ux447ux435ux440ux435ux43fux430ux448ux43aux430}
+
+\begin{description}
+\item[date]
+2015-09-11 11:00
+\item[test\_link]
+\url{http://kpm8.mipt.ru:8202/cgi-bin/new-client?contest_id=540103}
+\item[test\_comment]
+Контрольная №3
+\item[lecture\_link]
+\url{https://www.youtube.com/watch?v=M4FVjsNxNMY}
+\item[show\_solutions]
+yes
+\end{description}
+
+\subsection{Ветвление}\label{ux432ux435ux442ux432ux43bux435ux43dux438ux435}
+
+Ветвление (или условная инструкция) в Python имеет следующий синтаксис:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if} \NormalTok{Условие:}
+    \NormalTok{Блок_инструкций_1}
+\ControlFlowTok{else}\NormalTok{:}
+    \NormalTok{Блок_инструкций_2}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{Блок\_инструкций\_1} будет выполнен, если \texttt{Условие}
+истинно. Если \texttt{Условие} ложно, будет выполнен
+\texttt{Блок\ инструкций\ 2}.
+
+В условной инструкции может отсутствовать слово \texttt{else} и
+последующий блок. Такая инструкция называется неполным ветвлением.
+Например, если дано число \texttt{x} и мы хотим заменить его на
+абсолютную величину \texttt{x}, то это можно сделать следующим образом:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if} \NormalTok{x }\OperatorTok{<} \DecValTok{0}\NormalTok{:}
+    \NormalTok{x }\OperatorTok{=} \OperatorTok{-}\NormalTok{x}
+\BuiltInTok{print}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+В этом примере переменной \texttt{x} будет присвоено значение
+\texttt{-x}, но только в том случае, когда \texttt{x\textless{}0}. А вот
+инструкция \texttt{print(x)} будет выполнена всегда, независимо от
+проверяемого условия.
+
+Для выделения блока инструкций, относящихся к инструкции \texttt{if} или
+\texttt{else} в языке Python используются отступы. Все инструкции,
+которые относятся к одному блоку, должны иметь равную величину отступа,
+то есть одинаковое число пробелов в начале строки. Рекомендуется
+использовать отступ в 4 пробела и не рекомедуется использовать в
+качестве отступа символ табуляции.
+
+Это одно из существенных отличий синтаксиса Pythonа от синтаксиса
+большинства языков, в которых блоки выделяются специальными словами,
+например, \texttt{нц...\ кц} в Кумире, \texttt{begin...\ end} в Паскале
+или фигурными скобками в Си.
+
+\subsection{Вложенные условные
+инструкции}\label{ux432ux43bux43eux436ux435ux43dux43dux44bux435-ux443ux441ux43bux43eux432ux43dux44bux435-ux438ux43dux441ux442ux440ux443ux43aux446ux438ux438}
+
+Внутри условных инструкций можно использовать любые инструкции языка
+Python, в том числе и условную инструкцию. Получаем вложенное ветвление
+-- после одной развилки в ходе исполнения программы появляется другая
+развилка. При этом вложенные блоки имеют больший размер отступа
+(например, 8 пробелов). Покажем это на примере программы, которая по
+данным ненулевым числам x и y определяет, в какой из четвертей
+координатной плоскости находится точка (x,y):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(}\BuiltInTok{input}\NormalTok{())}
+\NormalTok{y }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(}\BuiltInTok{input}\NormalTok{())}
+\ControlFlowTok{if} \NormalTok{x }\OperatorTok{>} \DecValTok{0}\NormalTok{:}
+    \ControlFlowTok{if} \NormalTok{y }\OperatorTok{>} \DecValTok{0}\NormalTok{:               }\CommentTok{# x>0, y>0}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"Первая четверть"}\NormalTok{)}
+    \ControlFlowTok{else}\NormalTok{:                   }\CommentTok{# x>0, y<0}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"Четвертая четверть"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \ControlFlowTok{if} \NormalTok{y }\OperatorTok{>} \DecValTok{0}\NormalTok{:               }\CommentTok{# x<0, y>0}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"Вторая четверть"}\NormalTok{)}
+    \ControlFlowTok{else}\NormalTok{:                   }\CommentTok{# x<0, y<0}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"Третья четверть"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+В этом примере мы использовали \emph{комментарии} -- текст, который
+интерпретатор игнорирует. Комментариями в Pythonе является символ
+\texttt{\#} и весь текст после этого символа до конца строки.
+
+\subsection{Операторы
+сравнения}\label{ux43eux43fux435ux440ux430ux442ux43eux440ux44b-ux441ux440ux430ux432ux43dux435ux43dux438ux44f}
+
+Как правило, в качестве проверяемого условия используется результат
+вычисления одного из следующих операторов сравнения:
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.11\columnwidth}\raggedright\strut
+Оператор
+\strut\end{minipage} &
+\begin{minipage}[b]{0.83\columnwidth}\raggedright\strut
+Значение
+\strut\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+\texttt{\textless{}}
+\strut\end{minipage} &
+\begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Меньше --- условие верно, если первый операнд меньше второго.
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+\texttt{\textgreater{}}
+\strut\end{minipage} &
+\begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Больше --- условие верно, если первый операнд больше второго.
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+\texttt{\textless{}=}
+\strut\end{minipage} &
+\begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Меньше или равно --- условие верно, если первый операнд меньше или равен
+второму.
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+\texttt{\textgreater{}=}
+\strut\end{minipage} &
+\begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Больше или равно --- условие верно, если первый операнд больше или равен
+второму.
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+\texttt{==}
+\strut\end{minipage} &
+\begin{minipage}[t]{0.83\columnwidth}\raggedright\strut
+Равенство. Условие верно, если два операнда равны.
+\strut\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Например, условие \texttt{(x\ *\ x\ \textless{}\ 1000)} означает
+«значение \texttt{x\ *\ x} меньше 1000», а условие
+\texttt{(2\ *\ x\ !=\ y)} означает «удвоенное значение переменной
+\texttt{x} не равно значению переменной \texttt{y}».
+
+Операторы сравнения в Pythonе можно объединять в цепочки (в отличии от
+большинства других языков программирования, где для этого нужно
+использовать логические связки), например, \texttt{a\ ==\ b\ ==\ c} или
+\texttt{1\ \textless{}=\ x\ \textless{}=\ 10}.
+
+\subsection{Тип данных
+bool}\label{ux442ux438ux43f-ux434ux430ux43dux43dux44bux445-bool}
+
+Операторы сравнения возвращают значения специального логического типа
+\texttt{bool}. Значения логического типа могут принимать одно из двух
+значений: \texttt{True} (истина) или \texttt{False} (ложь). Если
+преобразовать логическое \texttt{True} к типу \texttt{int}, то получится
+1, а преобразование \texttt{False} даст 0. При обратном преобразовании
+число 0 преобразуется в \texttt{False}, а любое ненулевое число в
+\texttt{True}. При преобразовании \texttt{str} в \texttt{bool} пустая
+строка преобразовывается в \texttt{False}, а любая непустая строка в
+\texttt{True}.
+
+\subsection{Каскадные условные
+инструкции}\label{ux43aux430ux441ux43aux430ux434ux43dux44bux435-ux443ux441ux43bux43eux432ux43dux44bux435-ux438ux43dux441ux442ux440ux443ux43aux446ux438ux438}
+
+Пример программы, определяющий четверть координатной плоскости, можно
+переписать используя «каскадную« последовательность операцией
+`if\ldots{} elif\ldots{} else`:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(}\BuiltInTok{input}\NormalTok{())}
+\NormalTok{y }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(}\BuiltInTok{input}\NormalTok{())}
+\ControlFlowTok{if} \NormalTok{x }\OperatorTok{>} \DecValTok{0} \OperatorTok{and} \NormalTok{y }\OperatorTok{>} \DecValTok{0}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Первая четверть"}\NormalTok{)}
+\ControlFlowTok{elif} \NormalTok{x }\OperatorTok{>} \DecValTok{0} \OperatorTok{and} \NormalTok{y }\OperatorTok{<} \DecValTok{0}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Четвертая четверть"}\NormalTok{)}
+\ControlFlowTok{elif} \NormalTok{y }\OperatorTok{>} \DecValTok{0}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Вторая четверть"}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Третья четверть"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+В такой конструкции условия \texttt{if}, \ldots{}, \texttt{elif}
+проверяются по очереди, выполняется блок, соответствующий первому из
+истинных условий. Если все проверяемые условия ложны, то выполняется
+блок \texttt{else}, если он присутствует.
+
+\subsection{Цикл while}\label{ux446ux438ux43aux43b-while}
+
+Цикл \texttt{while} («пока») позволяет выполнить одну и ту же
+последовательность действий, пока проверяемое условие истинно. Условие
+записывается до тела цикла и проверяется до выполнения тела цикла. Как
+правило, цикл \texttt{while} используется, когда невозможно определить
+точное значение количества проходов исполнения цикла.
+
+Синтаксис цикла \texttt{while} в простейшем случае выглядит так:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{while} \NormalTok{Условие:}
+    \NormalTok{Блок_инструкций}
+\end{Highlighting}
+\end{Shaded}
+
+При выполнении цикла \texttt{while} сначала проверяется условие. Если
+оно ложно, то выполнение цикла прекращается и управление передается на
+следующую инструкцию после тела цикла \texttt{while}. Если условие
+истинно, то выполняется инструкция, после чего условие проверяется снова
+и снова выполняется инструкция. Так продолжается до тех пор, пока
+условие будет истинно. Как только условие станет ложно, работа цикла
+завершится и управление передастся следующей инструкции после цикла.
+
+Например, следующий фрагмент программы напечатает на экран всех целые
+числа, не превосходящие n:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OperatorTok{=} \DecValTok{1}
+\ControlFlowTok{while} \NormalTok{a }\OperatorTok{<=} \NormalTok{n:}
+    \BuiltInTok{print}\NormalTok{(a)}
+    \NormalTok{a }\OperatorTok{+=} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+Общая схема цикла \texttt{while} в данном случае для перебора всех всех
+подходящих значений такая:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OperatorTok{=} \NormalTok{начальное_значение}
+\ControlFlowTok{while} \NormalTok{а_является_подходящим_числом:}
+    \NormalTok{обработать_a}
+    \NormalTok{перейти_к_следующему_a}
+\end{Highlighting}
+\end{Shaded}
+
+Небольшой модицификацией цикла добъемся того, чтобы выводились все
+степени двойки, не превосходящие числа n:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OperatorTok{=} \DecValTok{1}
+\ControlFlowTok{while} \NormalTok{a }\OperatorTok{<=} \NormalTok{n:}
+    \BuiltInTok{print}\NormalTok{(a)}
+    \NormalTok{a }\OperatorTok{*=} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+Вот еще один пример использования цикла \texttt{while} для определения
+количества цифр натурального числа `n`:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(}\BuiltInTok{input}\NormalTok{())}
+\NormalTok{length }\OperatorTok{=} \DecValTok{0}
+\ControlFlowTok{while} \NormalTok{n }\OperatorTok{>} \DecValTok{0}\NormalTok{:}
+    \NormalTok{length }\OperatorTok{+=} \DecValTok{1}
+    \NormalTok{n }\OperatorTok{//=} \DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+В этом цикле мы отбрасываем по одной цифре числа, начиная с конца, что
+эквивалентно целочисленному делению на 10 (\texttt{n\ //=
+10}), при этом считаем в переменной \texttt{length}, сколько раз это
+было сделано.
+
+В языке Python есть и другой способ решения этой задачи ---
+\texttt{length\ =\ len(str(i))}.
+
+\subsection{Цикл for}\label{ux446ux438ux43aux43b-for}
+
+Помимо рассмотренного ранее цикла \texttt{while} в языке Python
+существует ещё одна конструкция, позволяющая выполнять циклы ---
+конструкция \texttt{for\ X\ in\ Y}. Обычно эта конструкция используется
+для обработки списков, которые будут рассмотрены на последующих
+занятиях. Сейчас же достаточно будет сказать, что цикл \texttt{for}
+может быть использован как более краткая альтернатива циклу
+\texttt{while}.
+
+Для последовательного перебора целых чисел из диапазона
+\texttt{{[}0;\ n)} можно использовать цикл `for`:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{10}\NormalTok{):}
+   \BuiltInTok{print}\NormalTok{(i)}
+\end{Highlighting}
+\end{Shaded}
+
+Этот код по выполняемым действиям полностью соответствуют циклу `while`:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i }\OperatorTok{=} \DecValTok{0}
+\ControlFlowTok{while} \NormalTok{i }\OperatorTok{<} \DecValTok{10}\NormalTok{:}
+  \BuiltInTok{print}\NormalTok{(i)}
+  \NormalTok{i }\OperatorTok{+=} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+Можно задавать начальные и конечные значения для переменной цикла, а
+также шаг:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{10}\NormalTok{, }\OperatorTok{-}\DecValTok{2}\NormalTok{):}
+  \BuiltInTok{print}\NormalTok{(i)}
+\end{Highlighting}
+\end{Shaded}
+
+Аналогичный цикл \texttt{while}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i }\OperatorTok{=} \DecValTok{20}
+\ControlFlowTok{while} \NormalTok{i }\OperatorTok{>} \DecValTok{10}\NormalTok{:}
+  \BuiltInTok{print}\NormalTok{(i)}
+  \NormalTok{i }\OperatorTok{-=} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Упражнение
+№1}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-1}
+
+Для каждого положительного числа, меньшего \texttt{n}, напечатайте
+\texttt{odd}, если число является нечётным, и \texttt{even}, если оно
+является чётным. Пример:
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.09\columnwidth}\raggedright\strut
+Ввод
+\strut\end{minipage} &
+\begin{minipage}[b]{0.12\columnwidth}\raggedright\strut
+Вывод
+\strut\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+7
+\strut\end{minipage} &
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+1 odd
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+2 even
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+3 odd
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+4 even
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+5 odd
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.12\columnwidth}\raggedright\strut
+6 even
+\strut\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(}\BuiltInTok{input}\NormalTok{())}
+
+\ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, n):}
+    \ControlFlowTok{if} \NormalTok{i }\OperatorTok{%} \DecValTok{2} \OperatorTok{==} \DecValTok{0}\NormalTok{:}
+        \NormalTok{s }\OperatorTok{=} \StringTok{'even'}
+    \ControlFlowTok{else}\NormalTok{:}
+        \NormalTok{s }\OperatorTok{=} \StringTok{'odd'}
+    \BuiltInTok{print}\NormalTok{(i, s, sep}\OperatorTok{=}\StringTok{' '}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Использование функций и
+модулей}\label{ux438ux441ux43fux43eux43bux44cux437ux43eux432ux430ux43dux438ux435-ux444ux443ux43dux43aux446ux438ux439-ux438-ux43cux43eux434ux443ux43bux435ux439}
+
+Зачастую при написании программ приходится иметь дело с многократным
+выполнением однотипных операций. Для того, чтобы избежать дублирования
+кода (см.
+\href{https://wikipedia.org/ru/Don\%E2\%80\%99t_repeat_yourself}{DRY}),
+вводится понятие \textbf{функции} --- готового для переиспользования
+блока кода. С некоторыми функциями мы уже знакомы, например, с
+\texttt{print} и \texttt{input}. При этом многие функции являются весьма
+полезными при использовании не только внутри одной программы, но и могут
+существенно облегчить разработку целого ряда других программ. Поэтому
+возникает следующий закономерный вопрос --- как структурировать функции,
+используемые в одной программе, так, чтобы их потом можно было
+использовать в другой? Для решения этого вопроса Python, как и многие
+другие современные языки, предлагает простое решение ---
+\textbf{модули}. Модуль --- это набор функций и переменных (на самом
+деле всё несколько сложнее, но на данном этапе подобные тонкости нас не
+интересуют).
+
+Подключение модуля осуществляется при помощи зарезервированного слова
+\texttt{import}, после чего можно использовать функции, объявленные
+внутри подключенного модуля:
+
+\begin{verbatim}
+>>> import math
+>>> math.pi
+3.141592653589793
+>>> math.sin(math.pi/2)
+1.0
+>>> math.cos(0)
+1.0
+\end{verbatim}
+
+В данном примере используется модуль \texttt{math} стандартной
+библиотеки языка Python для вычисления синуса и косинуса. Обратите
+внимание, что при использовании функций, объявленных в модуле, требуется
+вызывать функцию, указывая название модуля, т.е.
+\texttt{название\_модуля.название\_функции}.
+
+Отличительной особенностью языка Python является очень богатая
+стандартная библиотека. Поэтому зачастую можно услышать, что Python
+поставляется вместе с батарейками («batteries included»). Полный список
+«батареек» можно посмотреть в официальной
+\href{https://docs.python.org/3/py-modindex.html}{документации}.
+
+\subsubsection{Черепаха}\label{ux447ux435ux440ux435ux43fux430ux445ux430}
+
+Стандартная библиотека Python содержит модуль \texttt{turtle},
+предназначенный для обучения программированию. Этот модуль содержит
+\href{https://docs.python.org/3/library/turtle.html\#methods-of-rawturtle-turtle-and-corresponding-functions}{набор}
+функций, позволяющих управлять черепахой. Черепаха умеет выполнять
+небольшой набор команд, а именно:
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.18\columnwidth}\raggedright\strut
+Команда
+\strut\end{minipage} &
+\begin{minipage}[b]{0.47\columnwidth}\raggedright\strut
+Значение
+\strut\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+forward(X)
+\strut\end{minipage} &
+\begin{minipage}[t]{0.47\columnwidth}\raggedright\strut
+Пройти вперёд X пикселей
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+backward(X)
+\strut\end{minipage} &
+\begin{minipage}[t]{0.47\columnwidth}\raggedright\strut
+Пройти назад X пикселей
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+left(X)
+\strut\end{minipage} &
+\begin{minipage}[t]{0.47\columnwidth}\raggedright\strut
+Повернуться налево на X градусов
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+right(X)
+\strut\end{minipage} &
+\begin{minipage}[t]{0.47\columnwidth}\raggedright\strut
+Повернуться направо на X градусов
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+penup()
+\strut\end{minipage} &
+\begin{minipage}[t]{0.47\columnwidth}\raggedright\strut
+Не оставлять след при движении
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+pendown()
+\strut\end{minipage} &
+\begin{minipage}[t]{0.47\columnwidth}\raggedright\strut
+Оставлять след при движении
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+shape(X)
+\strut\end{minipage} &
+\begin{minipage}[t]{0.47\columnwidth}\raggedright\strut
+Изменить значок черепахи
+\strut\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Например, следующая программа рисует букву `S`:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+
+\NormalTok{turtle.shape(}\StringTok{'turtle'}\NormalTok{)}
+\NormalTok{turtle.forward(}\DecValTok{50}\NormalTok{)}
+\NormalTok{turtle.left(}\DecValTok{90}\NormalTok{)}
+\NormalTok{turtle.forward(}\DecValTok{50}\NormalTok{)}
+\NormalTok{turtle.left(}\DecValTok{90}\NormalTok{)}
+\NormalTok{turtle.forward(}\DecValTok{50}\NormalTok{)}
+\NormalTok{turtle.right(}\DecValTok{90}\NormalTok{)}
+\NormalTok{turtle.forward(}\DecValTok{50}\NormalTok{)}
+\NormalTok{turtle.right(}\DecValTok{90}\NormalTok{)}
+\NormalTok{turtle.forward(}\DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/example.gif}
+
+\subsubsection{Упражнение №2:
+квадрат}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-2-ux43aux432ux430ux434ux440ux430ux442}
+
+Нарисуйте квадрат. Пример:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/rectangle.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+
+\ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{4}\NormalTok{):}
+    \NormalTok{turtle.forward(}\DecValTok{100}\NormalTok{)}
+    \NormalTok{turtle.left(}\DecValTok{90}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Упражнение №3:
+окружность}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-3-ux43eux43aux440ux443ux436ux43dux43eux441ux442ux44c}
+
+Нарисуйте окружность. Воспользуйтесь тем фактом, что правильный
+многоугольник с большим числом сторон будет выглядеть как окружность.
+Пример:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/circle.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+\ImportTok{import} \NormalTok{math}
+
+\NormalTok{r }\OperatorTok{=} \DecValTok{100}
+\NormalTok{n }\OperatorTok{=} \DecValTok{50}
+\NormalTok{a }\OperatorTok{=} \DecValTok{2}\OperatorTok{*}\NormalTok{r}\OperatorTok{*}\NormalTok{math.sin(math.pi}\OperatorTok{/}\NormalTok{n)}
+\NormalTok{b }\OperatorTok{=} \DecValTok{180}\OperatorTok{*}\NormalTok{(}\DecValTok{1-2}\OperatorTok{/}\NormalTok{n)}
+
+\NormalTok{turtle.penup()}
+\NormalTok{turtle.forward(r)}
+\NormalTok{turtle.left(}\DecValTok{180}\OperatorTok{-}\NormalTok{b}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+\NormalTok{turtle.pendown()}
+
+\ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(n):}
+    \NormalTok{turtle.forward(a)}
+    \NormalTok{turtle.left(}\DecValTok{180}\OperatorTok{-}\NormalTok{b)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Упражнение №4: больше
+квадратов}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-4-ux431ux43eux43bux44cux448ux435-ux43aux432ux430ux434ux440ux430ux442ux43eux432}
+
+Нарисуйте 10 вложенных квадратов.
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/nested_rectangles.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+
+\NormalTok{l }\OperatorTok{=} \DecValTok{20}
+\ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{10}\NormalTok{):}
+    \NormalTok{turtle.penup()}
+    \NormalTok{turtle.goto(}\OperatorTok{-}\NormalTok{l}\OperatorTok{/}\DecValTok{2}\NormalTok{, }\OperatorTok{-}\NormalTok{l}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+    \NormalTok{turtle.pendown()}
+    \ControlFlowTok{for} \NormalTok{k }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{4}\NormalTok{):}
+        \NormalTok{turtle.forward(l)}
+        \NormalTok{turtle.left(}\DecValTok{90}\NormalTok{)}
+    \NormalTok{l }\OperatorTok{+=} \DecValTok{20}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Упражнение №5:
+спираль}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-5-ux441ux43fux438ux440ux430ux43bux44c}
+
+Нарисуйте спираль. Пример:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/spiral.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+\ImportTok{import} \NormalTok{math}
+
+\NormalTok{r }\OperatorTok{=} \DecValTok{5}
+\NormalTok{n }\OperatorTok{=} \DecValTok{50}
+
+\NormalTok{turtle.penup()}
+\NormalTok{turtle.forward(r)}
+\NormalTok{turtle.left(}\DecValTok{90}\NormalTok{)}
+\NormalTok{turtle.pendown()}
+
+\ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{10}\NormalTok{):}
+    \NormalTok{x }\OperatorTok{=} \DecValTok{5}\OperatorTok{/}\NormalTok{n}
+    \ControlFlowTok{for} \NormalTok{j }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(n):}
+        \NormalTok{a }\OperatorTok{=} \DecValTok{2}\OperatorTok{*}\NormalTok{r}\OperatorTok{*}\NormalTok{math.sin(math.pi}\OperatorTok{/}\NormalTok{n)}
+        \NormalTok{b }\OperatorTok{=} \DecValTok{180}\OperatorTok{*}\NormalTok{(}\DecValTok{1-2}\OperatorTok{/}\NormalTok{n)}
+        \NormalTok{turtle.forward(a)}
+        \NormalTok{turtle.left(}\DecValTok{180}\OperatorTok{-}\NormalTok{b)}
+        \NormalTok{r }\OperatorTok{+=} \NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Упражнение №6: квадратная
+«спираль»}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-6-ux43aux432ux430ux434ux440ux430ux442ux43dux430ux44f-ux441ux43fux438ux440ux430ux43bux44c}
+
+Нарисуйте «квадратную» спираль. Пример:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/rect_spiral.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+
+\NormalTok{a }\OperatorTok{=} \DecValTok{10}
+\ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{40}\NormalTok{):}
+    \NormalTok{turtle.forward(a)}
+    \NormalTok{turtle.left(}\DecValTok{90}\NormalTok{)}
+    \NormalTok{a }\OperatorTok{+=} \DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Написание
+функций}\label{ux43dux430ux43fux438ux441ux430ux43dux438ux435-ux444ux443ux43dux43aux446ux438ux439}
+
+Как было сказано раньше, функции --- это своего рода готовые кирпичики,
+из которых строится программа. До этого момента мы \emph{использовали}
+стандартные функции (\texttt{print}, \texttt{input}, функции модуля
+\texttt{turtle}), теперь настало время \emph{написать} функцию:
+
+\begin{verbatim}
+>>> def hello(name):
+...     print('Hello, ', name, '!')
+...
+>>> hello('world')
+Hello,  world!
+\end{verbatim}
+
+Это простейший пример функции, которая принимает в качестве
+\textbf{параметра} имя, а затем выводит на экран сообщение
+\texttt{Hello,\ \textless{}имя\textgreater{}}. Как видно из примера,
+функции в языке Python описываются при помощи ключевого слова `def`:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def} \NormalTok{Имя_функции(параметр_1, параметр_2, ...):}
+    \NormalTok{Блок_операций}
+\end{Highlighting}
+\end{Shaded}
+
+Так же, как и в случае циклов и условных операторов, \textbf{тело}
+функции выделяется при помощи отступов.
+
+Вызов функции осуществляется по имени с указанием параметров:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hello(}\StringTok{'world'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Внутри функции можно использовать те же синтаксические конструкции, что
+и вне её --- циклы, ветвления, можно даже описывать новые функции.
+Естественно, внутри функции можно работать и с переменными.
+
+Написанная ранее функция имеет особенность --- она просто просто выводит
+текст на экран и не возвращает никакого результата. Многие функции,
+напротив, занимаются вычислением какого-либо значения, а затем
+\textbf{возвращают} его тому, кто эту функцию \textbf{вызвал}. В
+качестве примера можно рассмотреть функцию для сложения двух чисел:
+
+\begin{verbatim}
+>>> def sum(a, b):
+...     return a + b
+...
+>>> sum(1, 2)
+3
+>>> sum(5, -7)
+-2
+\end{verbatim}
+
+Для возврата значения из функции используется оператор `return`: в
+качестве параметра указывается значение, которое требуется вернуть.
+
+\subsubsection{Упражнение №7: правильные
+многоугольники}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-7-ux43fux440ux430ux432ux438ux43bux44cux43dux44bux435-ux43cux43dux43eux433ux43eux443ux433ux43eux43bux44cux43dux438ux43aux438}
+
+Нарисуйте 10 вложенных правильных многоугольников. Используйте функцию,
+рисующую правильный n-угольник. Пример:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/regular_polygon.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+\ImportTok{import} \NormalTok{math}
+
+\KeywordTok{def} \NormalTok{poly(r, n):}
+    \NormalTok{a }\OperatorTok{=} \DecValTok{2}\OperatorTok{*}\NormalTok{r}\OperatorTok{*}\NormalTok{math.sin(math.pi}\OperatorTok{/}\NormalTok{n)}
+    \NormalTok{b }\OperatorTok{=} \DecValTok{180}\OperatorTok{*}\NormalTok{(}\DecValTok{1-2}\OperatorTok{/}\NormalTok{n)}
+    \NormalTok{turtle.left(}\DecValTok{180}\OperatorTok{-}\NormalTok{b}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+
+    \ControlFlowTok{for} \NormalTok{j }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(n):}
+        \NormalTok{turtle.forward(a)}
+        \NormalTok{turtle.left(}\DecValTok{180}\OperatorTok{-}\NormalTok{b)}
+
+\NormalTok{r }\OperatorTok{=} \DecValTok{30}
+\NormalTok{n }\OperatorTok{=} \DecValTok{3}
+
+\NormalTok{turtle.penup()}
+\NormalTok{turtle.forward(r)}
+\NormalTok{turtle.pendown()}
+
+\ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{10}\NormalTok{):}
+    \NormalTok{poly(r, n)}
+    \NormalTok{b }\OperatorTok{=} \DecValTok{180}\OperatorTok{*}\NormalTok{(}\DecValTok{1-2}\OperatorTok{/}\NormalTok{n)}
+
+    \NormalTok{turtle.right(}\DecValTok{180}\OperatorTok{-}\NormalTok{b}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+    \NormalTok{turtle.penup()}
+    \NormalTok{turtle.forward(}\DecValTok{20}\NormalTok{)}
+    \NormalTok{turtle.down()}
+
+    \NormalTok{n }\OperatorTok{+=} \DecValTok{1}
+    \NormalTok{r }\OperatorTok{+=} \DecValTok{20}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Упражнение №8:
+«цветок»}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-8-ux446ux432ux435ux442ux43eux43a}
+
+Нарисуйте «цветок» из окружностей. Используйте функцию, рисующую
+окружность. Пример:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/flower.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+\ImportTok{import} \NormalTok{math}
+
+\NormalTok{r }\OperatorTok{=} \DecValTok{50}
+\NormalTok{n }\OperatorTok{=} \DecValTok{50}
+\NormalTok{m }\OperatorTok{=} \DecValTok{3}
+\NormalTok{a }\OperatorTok{=} \DecValTok{2}\OperatorTok{*}\NormalTok{r}\OperatorTok{*}\NormalTok{math.sin(math.pi}\OperatorTok{/}\NormalTok{n)}
+\NormalTok{b }\OperatorTok{=} \DecValTok{180}\OperatorTok{*}\NormalTok{(}\DecValTok{1-2}\OperatorTok{/}\NormalTok{n)}
+
+\KeywordTok{def} \NormalTok{circle(sgn):}
+    \ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(n):}
+        \NormalTok{turtle.forward(a)}
+        \NormalTok{turtle.left(sgn}\OperatorTok{*}\NormalTok{(}\DecValTok{180}\OperatorTok{-}\NormalTok{b))}
+
+\NormalTok{turtle.speed(}\StringTok{'fastest'}\NormalTok{)}
+
+\ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(m):}
+    \NormalTok{circle(}\DecValTok{1}\NormalTok{)}
+    \NormalTok{circle(}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+    \NormalTok{turtle.left(}\DecValTok{180}\OperatorTok{/}\NormalTok{m)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Упражнение №9:
+«бабочка»}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-9-ux431ux430ux431ux43eux447ux43aux430}
+
+Нарисуйте «бабочку» из окружностей. Используйте функцию, рисующую
+окружность. Пример:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/butterfly.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+\ImportTok{import} \NormalTok{math}
+
+\KeywordTok{def} \NormalTok{circle(r, n, sgn):}
+    \NormalTok{a }\OperatorTok{=} \DecValTok{2}\OperatorTok{*}\NormalTok{r}\OperatorTok{*}\NormalTok{math.sin(math.pi}\OperatorTok{/}\NormalTok{n)}
+    \NormalTok{b }\OperatorTok{=} \DecValTok{180}\OperatorTok{*}\NormalTok{(}\DecValTok{1-2}\OperatorTok{/}\NormalTok{n)}
+    \ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(n):}
+        \NormalTok{turtle.forward(a)}
+        \NormalTok{turtle.left(sgn}\OperatorTok{*}\NormalTok{(}\DecValTok{180}\OperatorTok{-}\NormalTok{b))}
+
+\NormalTok{r }\OperatorTok{=} \DecValTok{50}
+\NormalTok{n }\OperatorTok{=} \DecValTok{50}
+\NormalTok{m }\OperatorTok{=} \DecValTok{10}
+
+\NormalTok{turtle.speed(}\StringTok{'fastest'}\NormalTok{)}
+
+\NormalTok{turtle.left(}\DecValTok{90}\NormalTok{)}
+
+\ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(m):}
+    \NormalTok{circle(r, n, }\DecValTok{1}\NormalTok{)}
+    \NormalTok{circle(r, n, }\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+    \NormalTok{r }\OperatorTok{+=} \DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Упражнение №10:
+пружина}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-10-ux43fux440ux443ux436ux438ux43dux430}
+
+Нарисуйте пружину. Используйте функцию, рисующую дугу. Пример:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/spring.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+\ImportTok{import} \NormalTok{math}
+
+\KeywordTok{def} \NormalTok{arc(r, n):}
+    \NormalTok{a }\OperatorTok{=} \DecValTok{2}\OperatorTok{*}\NormalTok{r}\OperatorTok{*}\NormalTok{math.sin(math.pi}\OperatorTok{/}\NormalTok{n}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+
+    \NormalTok{turtle.right(}\DecValTok{90}\OperatorTok{/}\NormalTok{n)}
+    \ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(n):}
+        \NormalTok{turtle.forward(a)}
+        \NormalTok{turtle.right(}\DecValTok{180}\OperatorTok{/}\NormalTok{n)}
+
+    \NormalTok{turtle.left(}\DecValTok{90}\OperatorTok{/}\NormalTok{n)}
+
+\NormalTok{R }\OperatorTok{=} \DecValTok{50}
+\NormalTok{r }\OperatorTok{=} \DecValTok{10}
+\NormalTok{N }\OperatorTok{=} \DecValTok{20}
+\NormalTok{n }\OperatorTok{=} \DecValTok{10}
+\NormalTok{m }\OperatorTok{=} \DecValTok{5}
+
+\NormalTok{l }\OperatorTok{=} \NormalTok{m}\OperatorTok{*}\DecValTok{2}\OperatorTok{*}\NormalTok{R}\OperatorTok{+}\NormalTok{(m}\DecValTok{-1}\NormalTok{)}\OperatorTok{*}\DecValTok{2}\OperatorTok{*}\NormalTok{r}
+
+\NormalTok{turtle.penup()}
+\NormalTok{turtle.goto(}\OperatorTok{-}\NormalTok{l}\OperatorTok{/}\DecValTok{2}\NormalTok{, }\OperatorTok{-}\NormalTok{(R}\OperatorTok{+}\NormalTok{r)}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+\NormalTok{turtle.pendown()}
+
+\NormalTok{turtle.left(}\DecValTok{90}\NormalTok{)}
+
+\ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(m}\DecValTok{-1}\NormalTok{):}
+    \NormalTok{arc(R, N)}
+    \NormalTok{arc(r, n)}
+
+\NormalTok{arc(R, N)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Упражнение №11:
+звезды}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-11-ux437ux432ux435ux437ux434ux44b}
+
+Нарисуйте две звезды: одну с 5 вершинами, другую --- с 11. Используйте
+функцию, рисующую звезду с n вершинами. Пример:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/star5.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/star11.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+\ImportTok{import} \NormalTok{math}
+
+\KeywordTok{def} \NormalTok{star(r, n):}
+    \NormalTok{a }\OperatorTok{=} \DecValTok{2}\OperatorTok{*}\NormalTok{r}\OperatorTok{*}\NormalTok{math.sin(math.pi}\OperatorTok{/}\NormalTok{n)}
+    \NormalTok{l }\OperatorTok{=} \NormalTok{a}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\NormalTok{math.cos(math.pi}\OperatorTok{/}\NormalTok{n)))}\OperatorTok{**}\FloatTok{0.5}
+
+    \NormalTok{turtle.penup()}
+    \NormalTok{turtle.left(}\DecValTok{90-360}\OperatorTok{/}\NormalTok{n)}
+    \NormalTok{turtle.forward(r)}
+    \NormalTok{turtle.left(}\DecValTok{180-90}\OperatorTok{/}\NormalTok{n)}
+    \NormalTok{turtle.pendown()}
+
+    \ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(n):}
+        \NormalTok{turtle.forward(l)}
+        \NormalTok{turtle.left(}\DecValTok{180-180}\OperatorTok{/}\NormalTok{n)}
+
+\NormalTok{star(}\DecValTok{100}\NormalTok{, }\DecValTok{11}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Рекурсия}\label{ux440ux435ux43aux443ux440ux441ux438ux44f}
+
+Как мы видели раньше функции могут вызывать другие функции --- это
+вполне обыденная ситуация. При этом функция может вызывать саму себя.
+Такой тип вызова называется \textbf{рекурсивным}. Самый простой пример
+рекурсивного вызова функции --- вычисление факториала числа:
+
+\begin{verbatim}
+>>> def fac(n):
+...        if n == 0:
+...            return 1
+...        else:
+...            return n*fac(n-1)
+...
+>>> fac(5)
+120
+\end{verbatim}
+
+Конечно, эту программу можно переписать и без рекурсивных вызовов:
+
+\begin{verbatim}
+>>> def fac(n):
+...     f = 1
+...     x = 2
+...     while x <= n:
+...         f *= x
+...         x += 1
+...
+...     return f
+...
+>>> fac(5)
+120
+\end{verbatim}
+
+Отличие этих двух программ кроется в подходе к их построению. Первая
+написана в \textbf{декларативном} стиле, то есть для вычисления
+факториала используются его \emph{свойства}, а именно
+\texttt{n!\ =\ n*(n-1)!} и \texttt{0!=1}. Второй же подход использует
+\textbf{императивный} стиль: мы \emph{явно описываем}, что
+\emph{представляет из себя} факториал: \texttt{n!\ =\ 1*2*\ldots{}*n}. В
+большинстве случаев один и тот же алгорит может быть легко записан, как
+в рекурсивной форме, так и в нерекурсивной, но существует ряд задач, для
+которых построение нерекурсивного алгоритма представляется весьма
+трудозатратным.
+
+Количество вложенных рекурсивных вызовов называется \textbf{глубиной}
+рекурсии. В силу ограниченности вычислительных ресурсов рекурсия в
+компьютерных программах не бывает бесконечной --- программист должен
+явно следить за тем, чтоб глубина рекурсивных вызовов не превышала
+заранее известного числа. Если программист об этом не позаботился (или
+же сделал это некорректно), операционная система (или интерпретатор)
+аварийно завершит программу по исчерпанию доступых ресурсов. Чтобы
+убедиться в этом, попробуйте вычислить \texttt{(-5)!} при помощи
+рассмотренного ранее примера рекурсивного алгоритма вычисления
+факториала.
+
+\subsubsection{Упражнение №12: числа
+Фибоначчи*}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-12-ux447ux438ux441ux43bux430-ux444ux438ux431ux43eux43dux430ux447ux447ux438}
+
+Напишите программу, вычисляющую n-ное число Фибоначчи. Используйте
+рекурсивные вызовы функций. Пример
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.09\columnwidth}\raggedright\strut
+Ввод
+\strut\end{minipage} &
+\begin{minipage}[b]{0.10\columnwidth}\raggedright\strut
+Вывод
+\strut\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+7
+\strut\end{minipage} &
+\begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+13
+\strut\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def} \NormalTok{fib(n):}
+    \ControlFlowTok{if} \NormalTok{n }\OperatorTok{<} \DecValTok{2}\NormalTok{:}
+        \ControlFlowTok{return} \NormalTok{n}
+    \ControlFlowTok{else}\NormalTok{:}
+        \ControlFlowTok{return} \NormalTok{fib(n}\DecValTok{-2}\NormalTok{)}\OperatorTok{+}\NormalTok{fib(n}\DecValTok{-1}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(fib(}\DecValTok{7}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Фракталы}\label{ux444ux440ux430ux43aux442ux430ux43bux44b}
+
+Хорошим примером для иллюстрации рекурсивных алгоритмов являются задачи
+рисования
+\href{https://wikipedia.org/ru/\%D0\%A4\%D1\%80\%D0\%B0\%D0\%BA\%D1\%82\%D0\%B0\%D0\%BB}{фракталов}.
+Фрактальные кривые, обладающие бесконечным самоподобием, не являются
+\href{https://wikipedia.org/ru/\%D0\%94\%D0\%BB\%D0\%B8\%D0\%BD\%D0\%B0_\%D0\%BA\%D1\%80\%D0\%B8\%D0\%B2\%D0\%BE\%D0\%B9}{спрямляемыми}:
+хоть их и можно изобразить на плоскости конечной площади, эти кривые
+имют бесконечную длину. Соответственно, программно их невозможно
+нарисовать полностью: всегда будет возможность нарисовать кривую
+детальнее. Поэтому, фрактальные кривые рисуют в некотором приближении,
+заранее фиксируя максимально допустимую глубину рекурсии.
+
+Пример программы, использующей рекурсивные вызовы функции, чтобы
+нарисовать ветку:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def} \NormalTok{draw(l, n):}
+    \ControlFlowTok{if} \NormalTok{n }\OperatorTok{==} \DecValTok{0}\NormalTok{:}
+        \NormalTok{turtle.left(}\DecValTok{180}\NormalTok{)}
+        \ControlFlowTok{return}
+
+    \NormalTok{x }\OperatorTok{=} \NormalTok{l}\OperatorTok{/}\NormalTok{(n}\DecValTok{+1}\NormalTok{)}
+    \ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(n):}
+        \NormalTok{turtle.forward(x)}
+        \NormalTok{turtle.left(}\DecValTok{45}\NormalTok{)}
+        \NormalTok{draw(}\FloatTok{0.5}\OperatorTok{*}\NormalTok{x}\OperatorTok{*}\NormalTok{(n}\OperatorTok{-}\NormalTok{i}\DecValTok{-1}\NormalTok{), n}\OperatorTok{-}\NormalTok{i}\DecValTok{-1}\NormalTok{)}
+        \NormalTok{turtle.left(}\DecValTok{90}\NormalTok{)}
+        \NormalTok{draw(}\FloatTok{0.5}\OperatorTok{*}\NormalTok{x}\OperatorTok{*}\NormalTok{(n}\OperatorTok{-}\NormalTok{i}\DecValTok{-1}\NormalTok{), n}\OperatorTok{-}\NormalTok{i}\DecValTok{-1}\NormalTok{)}
+        \NormalTok{turtle.right(}\DecValTok{135}\NormalTok{)}
+
+    \NormalTok{turtle.forward(x)}
+    \NormalTok{turtle.left(}\DecValTok{180}\NormalTok{)}
+    \NormalTok{turtle.forward(l)}
+
+\NormalTok{draw(}\DecValTok{400}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Результат выполнения программы при разной глубине рекурсии:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/leaf2.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/leaf3.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/leaf5.gif}
+
+\subsubsection{Упражнение №13: кривая
+Коха*}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-13-ux43aux440ux438ux432ux430ux44f-ux43aux43eux445ux430}
+
+Нарисуйте
+\href{https://wikipedia.org/ru/\%D0\%9A\%D1\%80\%D0\%B8\%D0\%B2\%D0\%B0\%D1\%8F_\%D0\%9A\%D0\%BE\%D1\%85\%D0\%B0}{кривую
+Коха}. Пример работы алгоритма при разной глубине рекурсии:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/koch_curve1.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/koch_curve2.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/koch_curve3.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/koch_curve4.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+
+\KeywordTok{def} \NormalTok{curve(l, n):}
+    \ControlFlowTok{if} \NormalTok{n }\OperatorTok{==} \DecValTok{0}\NormalTok{:}
+        \NormalTok{turtle.forward(l)}
+    \ControlFlowTok{else}\NormalTok{:}
+        \NormalTok{curve(l}\OperatorTok{/}\DecValTok{3}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+        \NormalTok{turtle.left(}\DecValTok{60}\NormalTok{)}
+        \NormalTok{curve(l}\OperatorTok{/}\DecValTok{3}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+        \NormalTok{turtle.right(}\DecValTok{120}\NormalTok{)}
+        \NormalTok{curve(l}\OperatorTok{/}\DecValTok{3}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+        \NormalTok{turtle.left(}\DecValTok{60}\NormalTok{)}
+        \NormalTok{curve(l}\OperatorTok{/}\DecValTok{3}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+
+\NormalTok{L }\OperatorTok{=} \DecValTok{800}
+\NormalTok{H }\OperatorTok{=} \NormalTok{L}\OperatorTok{/}\DecValTok{6}\OperatorTok{*}\DecValTok{3}\OperatorTok{**}\FloatTok{0.5}
+\NormalTok{N }\OperatorTok{=} \DecValTok{4}
+
+\NormalTok{turtle.penup()}
+\NormalTok{turtle.goto(}\OperatorTok{-}\NormalTok{L}\OperatorTok{/}\DecValTok{2}\NormalTok{, }\OperatorTok{-}\NormalTok{H}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+\NormalTok{turtle.pendown()}
+
+\NormalTok{curve(L, N)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Упражнение №14: снежинка
+Коха*}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-14-ux441ux43dux435ux436ux438ux43dux43aux430-ux43aux43eux445ux430}
+
+Нарисуйте
+\href{https://wikipedia.org/ru/\%D0\%9A\%D1\%80\%D0\%B8\%D0\%B2\%D0\%B0\%D1\%8F_\%D0\%9A\%D0\%BE\%D1\%85\%D0\%B0}{снежинку
+Коха}. Пример работы алгоритма при разной глубине рекурсии:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/koch_snowflake1.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/koch_snowflake2.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/koch_snowflake3.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/koch_snowflake4.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+
+\KeywordTok{def} \NormalTok{curve(l, n):}
+    \ControlFlowTok{if} \NormalTok{n }\OperatorTok{==} \DecValTok{0}\NormalTok{:}
+        \NormalTok{turtle.forward(l)}
+    \ControlFlowTok{else}\NormalTok{:}
+        \NormalTok{curve(l}\OperatorTok{/}\DecValTok{3}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+        \NormalTok{turtle.left(}\DecValTok{60}\NormalTok{)}
+        \NormalTok{curve(l}\OperatorTok{/}\DecValTok{3}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+        \NormalTok{turtle.right(}\DecValTok{120}\NormalTok{)}
+        \NormalTok{curve(l}\OperatorTok{/}\DecValTok{3}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+        \NormalTok{turtle.left(}\DecValTok{60}\NormalTok{)}
+        \NormalTok{curve(l}\OperatorTok{/}\DecValTok{3}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+
+\KeywordTok{def} \NormalTok{snowflake(L, N):}
+    \ControlFlowTok{for} \NormalTok{i }\OperatorTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{3}\NormalTok{):}
+        \NormalTok{curve(L, N)}
+        \NormalTok{turtle.right(}\DecValTok{120}\NormalTok{)}
+
+\NormalTok{L }\OperatorTok{=} \DecValTok{300}
+\NormalTok{H }\OperatorTok{=} \NormalTok{L}\OperatorTok{/}\DecValTok{6}\OperatorTok{*}\DecValTok{3}\OperatorTok{**}\FloatTok{0.5}
+\NormalTok{N }\OperatorTok{=} \DecValTok{4}
+
+\NormalTok{turtle.penup()}
+\NormalTok{turtle.goto(}\OperatorTok{-}\NormalTok{L}\OperatorTok{/}\DecValTok{2}\NormalTok{, H)}
+\NormalTok{turtle.pendown()}
+
+\NormalTok{turtle.speed(}\StringTok{'fastest'}\NormalTok{)}
+\NormalTok{snowflake(L, N)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Упражнение №15 кривая
+Минковского*}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-15-ux43aux440ux438ux432ux430ux44f-ux43cux438ux43dux43aux43eux432ux441ux43aux43eux433ux43e}
+
+Нарисуйте
+\href{http://wikipedia.org/ru/\%D0\%9A\%D1\%80\%D0\%B8\%D0\%B2\%D0\%B0\%D1\%8F_\%D0\%9C\%D0\%B8\%D0\%BD\%D0\%BA\%D0\%BE\%D0\%B2\%D1\%81\%D0\%BA\%D0\%BE\%D0\%B3\%D0\%BE}{кривую
+Минковского}. Пример работы алгоритма при разной глубине рекурсии:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/minkowski_curve1.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/minkowski_curve2.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/minkowski_curve3.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+
+\KeywordTok{def} \NormalTok{curve(l, n):}
+    \ControlFlowTok{if} \NormalTok{n }\OperatorTok{==} \DecValTok{0}\NormalTok{:}
+        \NormalTok{turtle.forward(l)}
+        \ControlFlowTok{return}
+    \NormalTok{curve(l}\OperatorTok{/}\DecValTok{4}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+    \NormalTok{turtle.left(}\DecValTok{90}\NormalTok{)}
+    \NormalTok{curve(l}\OperatorTok{/}\DecValTok{4}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+    \NormalTok{turtle.right(}\DecValTok{90}\NormalTok{)}
+    \NormalTok{curve(l}\OperatorTok{/}\DecValTok{4}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+    \NormalTok{turtle.right(}\DecValTok{90}\NormalTok{)}
+    \NormalTok{curve(l}\OperatorTok{/}\DecValTok{4}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+    \NormalTok{curve(l}\OperatorTok{/}\DecValTok{4}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+    \NormalTok{turtle.left(}\DecValTok{90}\NormalTok{)}
+    \NormalTok{curve(l}\OperatorTok{/}\DecValTok{4}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+    \NormalTok{turtle.left(}\DecValTok{90}\NormalTok{)}
+    \NormalTok{curve(l}\OperatorTok{/}\DecValTok{4}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+    \NormalTok{turtle.right(}\DecValTok{90}\NormalTok{)}
+    \NormalTok{curve(l}\OperatorTok{/}\DecValTok{4}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+
+\NormalTok{L }\OperatorTok{=} \DecValTok{800}
+\NormalTok{N }\OperatorTok{=} \DecValTok{3}
+
+\NormalTok{turtle.speed(}\StringTok{'fastest'}\NormalTok{)}
+
+\NormalTok{turtle.penup()}
+\NormalTok{turtle.goto(}\OperatorTok{-}\NormalTok{L}\OperatorTok{/}\DecValTok{2}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{turtle.pendown()}
+
+\NormalTok{curve(L, N)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Упражнение №16: кривая
+Леви*}\label{ux443ux43fux440ux430ux436ux43dux435ux43dux438ux435-16-ux43aux440ux438ux432ux430ux44f-ux43bux435ux432ux438}
+
+Нарисуйте
+\href{https://wikipedia.org/ru/\%D0\%9A\%D1\%80\%D0\%B8\%D0\%B2\%D0\%B0\%D1\%8F_\%D0\%9B\%D0\%B5\%D0\%B2\%D0\%B8}{кривую
+Леви}. Пример работы алгоритма при разной глубине рекурсии:
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/levi_curve1.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/levi_curve2.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/levi_curve3.gif}
+
+\includegraphics{\%7Bfilename\%7D/images/lab3/levi_curve9.gif}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{turtle}
+
+\KeywordTok{def} \NormalTok{curve(l, n):}
+    \ControlFlowTok{if} \NormalTok{n }\OperatorTok{==} \DecValTok{0}\NormalTok{:}
+        \NormalTok{turtle.forward(l)}
+        \ControlFlowTok{return}
+    \NormalTok{turtle.left(}\DecValTok{45}\NormalTok{)}
+    \NormalTok{curve(l}\OperatorTok{/}\DecValTok{2}\OperatorTok{**}\FloatTok{0.5}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+    \NormalTok{turtle.right(}\DecValTok{90}\NormalTok{)}
+    \NormalTok{curve(l}\OperatorTok{/}\DecValTok{2}\OperatorTok{**}\FloatTok{0.5}\NormalTok{, n}\DecValTok{-1}\NormalTok{)}
+    \NormalTok{turtle.left(}\DecValTok{45}\NormalTok{)}
+
+\NormalTok{L }\OperatorTok{=} \DecValTok{400}
+\NormalTok{N }\OperatorTok{=} \DecValTok{9}
+
+\NormalTok{turtle.speed(}\StringTok{'fastest'}\NormalTok{)}
+
+\NormalTok{turtle.penup()}
+\NormalTok{turtle.goto(}\OperatorTok{-}\NormalTok{L}\OperatorTok{/}\DecValTok{2}\NormalTok{, }\OperatorTok{-}\NormalTok{L}\OperatorTok{/}\DecValTok{3}\NormalTok{)}
+\NormalTok{turtle.pendown()}
+
+\NormalTok{curve(L, N)}
+\end{Highlighting}
+\end{Shaded}
+
