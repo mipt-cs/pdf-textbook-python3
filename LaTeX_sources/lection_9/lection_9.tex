@@ -1,0 +1,188 @@
+% !TeX spellcheck = russian_english
+% !TeX encoding = UTF-8
+\documentclass[a4paper, fleqn]{article}
+
+\usepackage{indentfirst} % Красная строка
+\usepackage[T2A]{fontenc} % Поддержка русских букв
+\usepackage[utf8]{inputenc} % Кодировка utf8
+\usepackage[russian]{babel} % руссификация
+\usepackage{amssymb} % дополнительные символы
+\usepackage{textcomp} % дополнительные текстовые символы
+\usepackage{amsmath} % матрицы
+%\usepackage{pdfpages}
+%\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\usepackage{listings}
+% листинги
+\lstset{language=Python, tabsize=4, language=Python}
+
+
+\textwidth = 16 cm
+\oddsidemargin= 0 cm
+\evensidemargin= 1 cm
+
+
+% \abovedisplayskip = 0 pt %.2\abovedisplayskip
+% \belowdisplayskip = .2\belowdisplayskip
+% \abovedisplayshortskip=.2\abovedisplayshortskip
+% \belowdisplayshortskip=.2\belowdisplayshortskip
+% \topsep= 0 pt
+
+% \setlength{\mathindent}{1.2 cm}
+% \setlength{\topsep}{0 pt}
+% \setlength{\abovedisplayskip}{0 pt}
+
+% \clubpenalty = 5000 % запрет висячих строк
+% \widowpenalty = 5000
+\binoppenalty=10000
+\relpenalty=10000
+
+% собственные команды и окружения
+
+\newenvironment{example}[1][]{\medskip \noindent \textbf{Пример. #1}\par \nopagebreak}{\medskip \par} % окружение-"пример"
+
+
+\title{Лекция \textnumero\,9}
+% {\huge \vspace{3 cm}}}
+
+\author{Т.\,Ф. Хирьянов}
+
+\date{}
+
+\begin{document}
+	\maketitle
+	
+\subsection*{Рекурсия}
+% мой листинг
+\ttfamily{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		
+	\end{tabbing}
+}
+
+
+% 09:20
+
+% 18:00
+\ttfamily{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def make\_matroska(size, number):\\
+		\> if number > 1:\\
+		\> \> print('низ размера', size)\\
+		\> \> make\_matroska(size - 1, number - 1)\\
+		\> \> print('верх размера', size)\\
+		\> else:\\
+		\> \> print('матрешечка размера', size)\\
+	\end{tabbing}
+}
+\subsection*{Поиск НОД. Алгоритм Евклида}	
+% 21:00
+
+% 24:50
+\ttfamily{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def my\_gcd(a, b):\\
+		\> if b == 0:\\
+		\> \> return a\\
+		\> else:\\
+		\> \> return my\_gcd(b, a\%b)\\
+	\end{tabbing}
+}
+
+\subsection*{Факториал}
+% 26:30
+
+% 27:40
+\ttfamily{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def factor(n):\\
+		\> return 1 if n == 0 else factor(n - 1)*n\\
+	\end{tabbing}
+}
+
+\subsection*{Числа Фибоначчи}
+% 00:00
+
+% 01:50
+\ttfamily{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def fib(n):\\
+		\> if n < 2:\\
+		\> \> return n\\
+		\> else:\\
+		\> \> return fib(n - 1) + fib(n - 2)
+	\end{tabbing}
+}
+
+\subsection*{Быстрое возведение в степень}	
+% 07:00
+
+% 11:50
+\ttfamily{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def fast\_power(a, n):\\
+		\> if n == 0:\\
+		\> \> return 1\\
+		\> elif n\%2 == 1:\\
+		\> \> return a*fast\_power(a, n - 1)\\
+		\> else: \> \> \> n\%2 == 0\\
+		\> \> return fast\_power(a*a, n//2)\\
+	\end{tabbing}
+}
+
+\subsection*{Ханойские башни}
+% 13:00
+
+% 21:50
+\ttfamily{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def hanoi(n, i=1, j=2):\\
+		\> if n == 1:\\
+		\> \> print('переставить 1', 'блин с', i, 'на', j, 'стержень')\\
+		\> else:\\
+		\> \> hanoi(n - 1, i, 6 - i - j)\\
+		\> \> print('переставить', n, 'блин', n - 1, i, 'на', j, 'стержень')\\
+		\> \> hanoi(n - 1, 6 - i - j, j)\\
+	\end{tabbing}
+}
+
+\subsection*{Генерация комбинаторных объектов}
+% 23:30
+
+% 28:00
+\ttfamily{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def bin\_gen(n, prefix = ''):\\
+		\> if n == 0:\\
+		\> \> print(prefix)\\
+		\> else:\\
+		\> \> assert(n > 0)\\
+		\> \> bin\_gen(n - 1, prefix + '0')\\
+		\> \> bin\_gen(n - 1, prefix + '1')\\
+	\end{tabbing}
+}
+
+% 34:40
+\ttfamily{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def perestanov\_gen(n, A=[])\\
+		\> if len(A) == n:\\
+		\> \> print(*A)\\
+		\> else:\\
+		\> \> for x in range(1, n + 1):\\
+		\> \> \> if x not in A:\\
+		\> \> \> \> perestanov\_gen(n, A + [x])\\
+	\end{tabbing}
+}
+
+
+\end{document}
