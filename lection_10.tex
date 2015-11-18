@@ -1,0 +1,202 @@
+% !TeX spellcheck = russian_english
+% !TeX encoding = UTF-8
+\documentclass[a4paper, fleqn]{article}
+
+\usepackage{indentfirst} % Красная строка
+\usepackage[T2A]{fontenc} % Поддержка русских букв
+\usepackage[utf8]{inputenc} % Кодировка utf8
+\usepackage[russian]{babel} % руссификация
+\usepackage{amssymb} % дополнительные символы
+\usepackage{textcomp} % дополнительные текстовые символы
+\usepackage{amsmath} % матрицы
+%\usepackage{pdfpages}
+%\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\usepackage{listings}
+% листинги
+\lstset{language=Python, tabsize=4, language=Python}
+
+
+\textwidth = 16 cm
+\oddsidemargin= 0 cm
+\evensidemargin= 1 cm
+
+
+% \abovedisplayskip = 0 pt %.2\abovedisplayskip
+% \belowdisplayskip = .2\belowdisplayskip
+% \abovedisplayshortskip=.2\abovedisplayshortskip
+% \belowdisplayshortskip=.2\belowdisplayshortskip
+% \topsep= 0 pt
+
+% \setlength{\mathindent}{1.2 cm}
+% \setlength{\topsep}{0 pt}
+% \setlength{\abovedisplayskip}{0 pt}
+
+% \clubpenalty = 5000 % запрет висячих строк
+% \widowpenalty = 5000
+\binoppenalty=10000
+\relpenalty=10000
+
+% собственные команды и окружения
+
+\newenvironment{example}[1][]{\medskip \noindent \textbf{Пример. #1}\par \nopagebreak}{\medskip \par} % окружение-"пример"
+
+
+\title{Лекция \textnumero\,10\\
+	Пока только листинги кода}
+% {\huge \vspace{3 cm}}}
+
+\author{Т.\,Ф. Хирьянов}
+
+\date{}
+
+\begin{document}
+	\maketitle
+	
+\section*{Динамическое программирование}
+
+% мой листинг
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		р
+	\end{tabbing}
+	}
+
+%04:00
+
+
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def fib(n):\\
+		\> F = [0, 1] + [0] + (n - 1)\\
+		\> for i in range(2, n + 1):\\
+		\> \> F[i] = F[i - 1] + F[i - 2]\\
+		\> return F[n]
+	\end{tabbing}
+}
+
+% 10:15
+
+% 14:40
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		K = [0, 1] + [0] + (n - 1)\\
+		for i in range(2, n + 1):\\
+		\> \> K[i] = K[i - 1] + K[i - 2]
+	\end{tabbing}
+}
+
+% 16:30
+\subsection*{Количество траекторий с запрещенными клетками}
+
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		Denied = [0, 0, 1, 0, 0, 1, 0, 0, ... 1, 0, 0]\\
+		n = int(input())\\
+		K =[0, 1] + [None]*(n - 1)\\
+		for i in range(2, n + 1):\\
+		\> if Denied[i]:\\
+		\> \> K[i] = 0\\
+		\> else:\\
+		\> \> K[i] = K[i - 1] + K[i - 2]
+	\end{tabbing}
+}
+
+% 22:50
+\subsection*{Задача о минимальной стоимости}
+
+% 29:30
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		Price = [10, 20, 5, 3, ...]\\
+		n = int(input())\\
+		C = [0]*(n + 1)\\
+		C[0] = Price[0]\\
+		C[1] = C[0] + Price[1]\\
+		for i in range(2, n + 1):\\
+		\> C[i] = Price[i] + min(C[i - 1], C[i - 2])\\
+		print(C[n])\\
+		\\
+		Path = [n]\\
+		while Path[-1] != 0:\\
+		\> i = Path[-1]\\
+		\> if C[i - 1] < C[i - 2]:\\
+		\> \> Path.append(i - 1)\\
+		\> else:\\
+		\> \> Path.append(i - 2)\\
+		Path = Path[::-1]
+	\end{tabbing}
+}
+
+% перерыв
+
+% король
+% 00:00
+
+% 03:30
+
+\subsection*{Исполнитель король}
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		m = int(input())\\
+		r = int(input())\\
+		K = [[0]*m for i in range(n)]\\
+		for i in range(n):\\
+		\> K[i][0] = 1\\
+		for j in range(m):\\
+		\> K[0][j] = 1\\
+		for i in range(1, n):\\
+		\> for j in range(1, m):\\
+		\> \> K[i][j] = K[i - 1][j - 1] + K[i - 1][j] + K[i][j - 1]\\
+		print(K[n - 1][m - 1])
+	\end{tabbing}
+}
+
+% 15:00
+\subsection*{Наибольшая общая подпоследовательность}
+
+% 16:15 рисунок 2 последовательности
+
+% 24:00
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		n = len(A)\\
+		m = len(B)\\
+		F = [[0]*(m + 1) for i in range(n + 1)]\\
+		for i in range(1, n + 1):\\
+		\> for j in range(1, m + 1):\\
+		\> \> if A[i - 1] == B[j - 1]: \> \> \# i символ А \\
+		\> \> \> F[i][j] = F[i - 1][j - 1] + 1\\
+		\> \> else:\\
+		\> \> \> F[i][j] = max(F[i - 1][j], F[i][j - 1])\\
+		print(F[n][m])
+	\end{tabbing}
+}
+
+\subsection*{Наибольшая возрастающая подпоследовательность}
+
+% 32:00
+
+% 35:00
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		F = [0] + len(A)\\
+		for i in range(len(A)):\\
+		\> for j in range(i):\\
+		\> \> if A[j] < A[i] $\backslash$\\
+		\> \> \> and F[j] > F[i]:\\
+		\> \> \> F[i] = F[j]\\
+		\> F[i] += 1\\
+		print(max(F))
+	\end{tabbing}
+}
+
+\end{document}
