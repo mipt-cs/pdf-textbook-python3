@@ -1,0 +1,156 @@
+% !TeX spellcheck = russian_english
+% !TeX encoding = UTF-8
+\documentclass[a4paper, fleqn]{article}
+
+\usepackage{indentfirst} % Красная строка
+\usepackage[T2A]{fontenc} % Поддержка русских букв
+\usepackage[utf8]{inputenc} % Кодировка utf8
+\usepackage[russian]{babel} % руссификация
+\usepackage{amssymb} % дополнительные символы
+\usepackage{textcomp} % дополнительные текстовые символы
+\usepackage{amsmath} % матрицы
+%\usepackage{pdfpages}
+%\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\usepackage{listings}
+% листинги
+\lstset{language=Python, tabsize=4, language=Python}
+
+
+\textwidth = 16 cm
+\oddsidemargin= 0 cm
+\evensidemargin= 1 cm
+
+
+% \abovedisplayskip = 0 pt %.2\abovedisplayskip
+% \belowdisplayskip = .2\belowdisplayskip
+% \abovedisplayshortskip=.2\abovedisplayshortskip
+% \belowdisplayshortskip=.2\belowdisplayshortskip
+% \topsep= 0 pt
+
+% \setlength{\mathindent}{1.2 cm}
+% \setlength{\topsep}{0 pt}
+% \setlength{\abovedisplayskip}{0 pt}
+
+% \clubpenalty = 5000 % запрет висячих строк
+% \widowpenalty = 5000
+\binoppenalty=10000
+\relpenalty=10000
+
+% собственные команды и окружения
+
+\newenvironment{example}[1][]{\medskip \noindent \textbf{Пример. #1}\par \nopagebreak}{\medskip \par} % окружение-"пример"
+
+
+\title{Лекция \textnumero\,8}
+% {\huge \vspace{3 cm}}}
+
+\author{Т.\,Ф. Хирьянов}
+
+\date{}
+
+\begin{document}
+	\maketitle
+% ghbvth	
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def fib(n):\\
+		\> F = [0, 1] + [0]*(n - 1)\\
+		\> for i in range(2, n + 1):\\
+		\> \> F[i] = F[i - 1] + F[i - 2]\\
+		\> return F[n]
+	\end{tabbing}
+}	
+
+\subsection*{Сортировка выбором}	
+	
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+			for pos in range(N - 1):\\
+			\> for i in range(pos + 1, N):\\
+			\> \> if A[i] < A[pos]:\\
+			\> \> \> tmp = A[i]\\
+			\> \> \> A[i] = A[pos]\\
+			\> \> \> A[pos] = tmp
+		\end{tabbing}
+	}	
+	
+\subsection*{Сортировка методом пузырька}
+
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		for prohod in range(1, N):\\
+		\> for i in range(N - prohod):\\
+		\> \> if A[i] > A[i + 1]:\\
+		\> \> \> tmp = A[i]\\
+		\> \> \> A[i] = A[i + 1]\\
+		\> \> \> A[i + 1] = tmp
+	\end{tabbing}
+}
+
+\subsection*{Сортировка дурака}	
+	
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+			i = 0\\
+			while i < N - 1:\\
+			\> if A[i] < A[i + 1]:\\
+			\> \> i += 1\\
+			\> else:\\
+			\> \> tmp = A[i]\\
+			\> \> A[i] = A[i - 1]\\
+			\> \> A[i + 1] = tmp\\
+			\> \> i = 0
+			\end{tabbing}
+			}
+
+\subsection*{Сортировка подсчетом}
+	
+	% 33:00
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+			frequency = [0]*10\\
+			digit = int(input())\\
+			while 0 <= digit <= 9:\\
+			\> frequency[digit] += 1\\
+			\> digit = int(input())\\
+			for digit in range(10):\\
+			\> print(*[digit]*frequency[digit])
+		\end{tabbing}
+	}
+\subsubsection*{Проверка типа входных данных}
+
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def sort\_number(A):\\
+		\> assert(type(A[0]) == 'class<int>')
+	\end{tabbing}
+}
+
+\subsection*{Поразрядная сортировка}
+
+Только для целых чисел или коротких строк.
+
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		A = [int(x) for x in input().split()]\\
+		max\_num\_len = max([len(str(x)) for x in A])\\
+		for radix in range(0, max\_num\_len):\\
+		\> B = [[] for i in range(10)]\\
+		\> for x in A:\\
+		\> \> digit = (x // (10 ** radix)) \% 10\\
+		\> \> B[digit].append(x)\\
+		\> \> A[:] = []\\
+		\> for digit in range(10):\\
+		\> A += B[digit]
+	\end{tabbing}
+}
+
+\end{document}
