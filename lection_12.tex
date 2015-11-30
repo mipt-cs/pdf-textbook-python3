@@ -1,0 +1,204 @@
+% !TeX spellcheck = russian_english
+% !TeX encoding = UTF-8
+\documentclass[a4paper, fleqn]{article}
+
+\usepackage{indentfirst} % Красная строка
+\usepackage[T2A]{fontenc} % Поддержка русских букв
+\usepackage[utf8]{inputenc} % Кодировка utf8
+\usepackage[russian]{babel} % руссификация
+\usepackage{amssymb} % дополнительные символы
+\usepackage{textcomp} % дополнительные текстовые символы
+\usepackage{amsmath} % матрицы
+%\usepackage{pdfpages}
+%\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\usepackage{listings}
+% листинги
+\lstset{language=Python, tabsize=4, language=Python}
+
+
+\textwidth = 16 cm
+\oddsidemargin= 0 cm
+\evensidemargin= 1 cm
+
+
+% \abovedisplayskip = 0 pt %.2\abovedisplayskip
+% \belowdisplayskip = .2\belowdisplayskip
+% \abovedisplayshortskip=.2\abovedisplayshortskip
+% \belowdisplayshortskip=.2\belowdisplayshortskip
+% \topsep= 0 pt
+
+% \setlength{\mathindent}{1.2 cm}
+% \setlength{\topsep}{0 pt}
+% \setlength{\abovedisplayskip}{0 pt}
+
+% \clubpenalty = 5000 % запрет висячих строк
+% \widowpenalty = 5000
+\binoppenalty=10000
+\relpenalty=10000
+
+% собственные команды и окружения
+
+\newenvironment{example}[1][]{\medskip \noindent \textbf{Пример. #1}\par \nopagebreak}{\medskip \par} % окружение-"пример"
+
+
+\title{Лекция \textnumero\,12}
+% {\huge \vspace{3 cm}}}
+
+\author{Т.\,Ф. Хирьянов}
+
+\date{}
+
+\begin{document}
+	\maketitle
+
+\subsection*{Объектно-ориентированное программирование}
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		class Rabbit:\\
+		\> size = None\\
+		\> sytost = 0\\
+		\> def set\_size(self, size):\\
+		\> \> self.size = size\\
+		\> def get\_size(self):\\
+		\> \> return self.size\\
+		\> def feed(self, meal):\\
+		\> \> self.sytost += calorii(meal)
+	\end{tabbing}
+}
+
+
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\=\hspace{3cm}\=\kill
+		a = Rabbit()\\
+		b = Rabbit()\\
+		a.feed(carrot) \> \# Rabbit.feed(a, carrot)
+	\end{tabbing}
+}
+
+\subsection*{Полиморфизм в Python}
+
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def f(x):\\
+		\> return x*x\\
+		def f(x, y):\\
+		\> return x*y
+	\end{tabbing}
+}
+
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		def f(x, y=None):\\
+		\> if y == None:\\
+		\> \> y = x\\
+		\> return x*y
+	\end{tabbing}
+}
+	
+	\subsection*{setter и getter}
+	
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+			class Student:\\
+			\> def \_\_init\_\_(self, age, name):\> \> \# Конструктор\\
+			\> \> self.\_age = age\\
+			\> \> self.\_name = name\\
+			\> def aging(self):\\
+			\> \> self.\_age += 1\\
+			\> \> print('Ура! Мне', self.\_age, 'лет!')\\
+			\> @property\\
+			def \_age(self): \> \> \# <<getter>> (свойство)\\
+			\> return self.age\\
+			\> @age.setter\\
+			\> def age(self, age):\\
+			\> \> self.age = age
+		\end{tabbing}
+	}
+	
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+			a = Student(17, 'Вася')\\
+			a.age = 18 \> \> \# Нельзя!\\
+			x = a.age
+		\end{tabbing}
+	}
+	
+	\subsection*{Определение функций}
+	
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+			def productor(x):\\
+			\> return x*productor.p\\
+			productor.p = 5\\
+			print(productor(2)) \> \> \# 10
+		\end{tabbing}
+	}
+	
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+			class Vector2D:\\
+			\> def \_\_init\_\_(self.x=0, y=0):\\
+			\> \> self.\_x = x\\
+			\> \> self.\_y = y\\
+			\> def \_\_add\_\_(self, other):\\
+			\> \> x = self.\_x + other.\_x\\
+			\> \> y = self.\_y + other.\_y\\
+			\> \> return Vector2D(x, y)\\
+			\> def \_\_mul\_\_(self, other):\\
+			\> \> if isInstance(other, Vector2D):\\
+			\> \> \> return self.\_x *other.\_x + self.\_y *other.\_y\\
+			\> \> else:\\
+			\> \> \> return Vector2D(self.\_x * other, self.\_y * other)
+		\end{tabbing}
+	}
+	
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+			def geom\_range(start, stop, d):\\
+			\> x = start\\
+			\> while x < stop:\\
+			\> \> yield x\\
+			\> \> x *= d
+		\end{tabbing}
+	}
+	
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+			for x in geom\_range(1, 1025, 2):\\
+			\> print(x)
+		\end{tabbing}
+	}
+	
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+			g\_num = dict(zip(range(0, 11), geom\_range(1, 1025, 2))\\
+			x, y, z = list(map(int, input().split())\\
+			x, y, z = [int(x) for x in input().split()]
+		\end{tabbing}
+	}
+	
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+			a = [1]\\
+			a.append(a) \> \> \# [1, *]\\
+			a.append(a)\\
+			x = a\\
+			for i in range(10):\\
+			\> print(x[0])\\
+			\> x = x[1]\\
+		\end{tabbing}
+	}
+\end{document}
