@@ -77,7 +77,7 @@
 	
 	В логике Аристотеля существуют два состояния: \emph{истина} и \emph{ложь}, которые удобно обозначать соответственно как 1 и 0. 
 	Изначально рассматривалось содержание высказываний. Однако впоследствии утвердился подход, в котором существуют атомарные (простые) высказывания, не разбивающиеся на отдельные. Их истинность зависит от сторонних знаний, и в конкретном рассмотрении атомарное выражение принимается истинным либо ложным аксиоматически. Так например, выражение 
-	\[1+1=1\]
+	$1+1=1$
 	можно считать ложным с точки зрения привычной арифметики либо истинным, если рассматривать алгебру, где это возможно. 
 	
 	Предметом же рассмотрения алгебры логики являются \emph{составные высказывания}. Для их образования из простых высказываний используются \emph{логические операции}. Они выполняются в определенном порядке, соблюдая приоритетность, которая убывает следующим образом.
@@ -134,7 +134,8 @@
 	Из указанных функций некоторые выражаются через другие. Из-за этого возникает вопрос, какого количества из этих операций будет достаточно для описания произвольной логической функции любого количества аргументов. Теория показывает, что трех из них (не, и, или) достаточно для этого, нужно только привести функцию к \emph{нормальной дизъюнктивной форме}, т.е. к логической сумме специально сконструированных произведений, равных истине только в одном из случаев, когда функция также истинна. Значит, таких произведений будет столько, сколько раз функция принимает значение 1 в ее таблице истинности.
 	
 	\begin{tabular}{ccc|c|c|c|c}
-		A&  B&  C&  f(A,B,C)&  $\bar{A}\cdot \bar{B}\cdot C$&  $\bar{A}\cdot B \cdot C$&  $A\cdot B \cdot \bar{C}$\\ 
+		A&  B&  C&  f(A,B,C)&  $\bar{A}\cdot \bar{B}\cdot C$&  $\bar{A}\cdot B \cdot C$&  $A\cdot B \cdot \bar{C}$\\
+		\hline
 		0&  0&  0&  0&  0&  0&  0\\ 
 		0&  0&  1&  1&  1&  0&  0\\ 
 		0&  1&  0&  0&  0&  0&  0\\ 
@@ -160,7 +161,7 @@
 	\end{itemize}
 	Простые законы:
 	\begin{itemize}
-		\item $А\cdot А = А$ \qquad $A+A=A$(законы повторения)
+		\item $A\cdot A = A$ \qquad $ A + A = A$(законы повторения)
 		\item $A\cdot\bar{A}=0$ \qquad $A + \bar{A} = 1$ (законы <<третьего лишнего>>)
 		\item $A\cdot(A+B)=A$ $A+A\cdot B=A$ (закон поглощения)\\
 		Действительно, подставив вместо А 1, а затем 0, получаем с помощью очевидных соотношений верные утверждения.
@@ -189,100 +190,96 @@
 	%51:42	
 	
 	\subsection*{Определение четверти координатной плоскости, которой принадлежит точка}
-	\begin{lstlisting}
-	x = int(input())
-	y = int(input())
-	if y>0:
-		if x>0:
-			print('1')
-		else:
-			print('2')
-	else:
-		if x>0:
-			print('4')
-		else:
-			print('3')
-	\end{lstlisting}		
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{2cm}\=\kill
+			x = int(input())\\
+			y = int(input())\\
+			if y > 0:\\
+			\> if x > 0:\\
+			\> \> print('1')\\
+			\> else:\\
+			\> \> print('2')\\
+			else:\\
+			\> if x > 0:\\
+			\> \> print('4')\\
+			\> else:\\
+			\> \> print('3')
+		\end{tabbing}
+	}
 	\subsection*{Каскадная условная конструкция}
-	\begin{lstlisting}
-		x = int(input())
-		y = int(input())
-		if x<0:
-			print('negative')
-		elif x==0:
-			print('null')
-		elif x<1:
-			print('0<x<1')
-		elif x == 1:
-			print('1')
-		else: # x > 1
-			print('x > 1')
-	\end{lstlisting}
-	
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{2cm}\=\kill
+			x = int(input())\\
+			y = int(input())\\
+			if x < 0:\\
+			\> print('negative')\\
+			elif x == 0:\\
+			\> print('null')\\
+			elif x < 1:\\
+			\> print('0 < x < 1')\\
+			elif x == 1:\\
+			\> print('1')\\
+			else: \> \> \# x > 1\\
+			\> print('x > 1')
+		\end{tabbing}
+	}
 	\subsection*{Поиск максимального значения}
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{2cm}\=\kill
+			x = int(input())\\
+			while x!=0:\\
+			\> if x > tmp\_max: \> \> \# tmp\_max = max(x, tmp\_max)\\
+			\> \> tmp\_max = x\\
+			\> x = int(input())
+		\end{tabbing}
+	}
 	
-	\begin{lstlisting}
-		x = int(input())
-		while x!=0:
-			if x > tmp_max: # tmp_max = max(x, tmp_max)
-				tmp_max = x
-			x = int(input())	
-	\end{lstlisting}
-	
-	\begin{lstlisting}
-		x = int(input())
-		while x!=0:
-			if x > m1:
-				m1, m2, m3 = x, m1, m2
-			elif x > m2:
-				m2, m3 = x, m2
-			elif x > m3:
-				m3 = x
-			x int(input())
-	\end{lstlisting}
-	
-	\begin{lstlisting}
-		x = int(input())
-		m1 = m2 = m3 = None
-		while x!=0:
-			if m1 == None or x > m1:
-				m1, m2, m3 = x, m1, m2
-			elif m2 == None or x > m2:
-				m2, m3 = x, m2
-			elif m3 == None or x > m3:
-				m3 = x
-			x int(input())
-	\end{lstlisting}
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{2cm}\=\kill
+			x = int(input())\\
+			while x!=0:\\
+			\> if x > m1:\\
+			\> \> m1, m2, m3 = x, m1, m2\\
+			\> elif x > m2:\\
+			\> \> m2, m3 = x, m2\\
+			\> elif x > m3:\\
+			\> \> m3 = x\\
+			\> x int(input())
+		\end{tabbing}
+	}
 	
 	\subsection*{Тест простоты числа}
-	
-	\begin{lstlisting}
-		def isPrime(x):
-			"x is a prime"
-			delitel = 2
-			while delitel**2 < x:
-				if x % delitel == 0:
-					return False
-				delitel += 1
-			return True
-	\end{lstlisting} 
-	
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{2cm}\=\kill
+			def isPrime(x):\\
+			\> "x is a prime"\\
+			\> delitel = 2\\
+			\> while delitel**2 < x:\\
+			\> \> if x \% delitel == 0:\\
+			\> \> \> return False\\
+			\> \> delitel += 1\\
+			\> return True
+		\end{tabbing}
+	}	
 	\subsection*{Разложение числа на множители}
+	\texttt{
+		\begin{tabbing}
+			\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{2cm}\=\kill
+			x = int(input())\\
+			delitel = 2\\
+			while x > 1:\\
+			\> if x \% delitel == 0:\\
+			\> \> print (delitel)\\
+			\> \> x //= delitel\\
+			\> else:\\
+			\> \> delitel += 1
+		\end{tabbing}
+	}
 	
-	\begin{lstlisting}
-		x = int(input())
-		delitel = 2
-		while x > 1:
-			if x % delitel == 0:
-				print (delitel)
-				x //= delitel
-			else:
-				delitel += 1	
-	\end{lstlisting}
-	
-	
-% 10:40
-	
-	
-	
+
 \end{document}	

@@ -1,57 +1,4 @@
-% !TeX spellcheck = russian_english
-% !TeX encoding = UTF-8
-\documentclass[a4paper, fleqn]{article}
-
-\usepackage{indentfirst} % Красная строка
-\usepackage[T2A]{fontenc} % Поддержка русских букв
-\usepackage[utf8]{inputenc} % Кодировка utf8
-\usepackage[russian]{babel} % руссификация
-\usepackage{amssymb} % дополнительные символы
-\usepackage{textcomp} % дополнительные текстовые символы
-\usepackage{amsmath} % матрицы
-%\usepackage{pdfpages}
-%\usepackage{pgfplots}
-%\usepackage{pgfplotstable}
-\usepackage{listings}
-% листинги
-\lstset{language=Python, tabsize=4, language=Python}
-
-
-\textwidth = 16 cm
-\oddsidemargin= 0 cm
-\evensidemargin= 1 cm
-
-
-% \abovedisplayskip = 0 pt %.2\abovedisplayskip
-% \belowdisplayskip = .2\belowdisplayskip
-% \abovedisplayshortskip=.2\abovedisplayshortskip
-% \belowdisplayshortskip=.2\belowdisplayshortskip
-% \topsep= 0 pt
-
-% \setlength{\mathindent}{1.2 cm}
-% \setlength{\topsep}{0 pt}
-% \setlength{\abovedisplayskip}{0 pt}
-
-% \clubpenalty = 5000 % запрет висячих строк
-% \widowpenalty = 5000
-\binoppenalty=10000
-\relpenalty=10000
-
-% собственные команды и окружения
-
-\newenvironment{example}[1][]{\medskip \noindent \textbf{Пример. #1}\par \nopagebreak}{\medskip \par} % окружение-"пример"
-
-
-\title{Лекция \textnumero\,9}
-% {\huge \vspace{3 cm}}}
-
-\author{Т.\,Ф. Хирьянов}
-
-\date{}
-
-\begin{document}
-	\maketitle
-	
+\chapter{}
 \section*{Рекурсия}
 
 Когда при выполнении функции вызывается еще одна функция, происходит запоминание места, откуда совершается переход. После завершения работы этой <<внутренней>>  функции осуществляется воврат к этому месту. Поэтому нет никаких проблем для функции вызвать саму себя. Такой подход называется \emph{рекурсией}.
@@ -82,7 +29,7 @@
 При этом внутри тела функции можно выделить два участка: до рекурсивного вызова и после. Первая часть называется \emph{прямым ходом рекурсии}, вторая -- \emph{обратным}. 
 
 \subsection*{Поиск НОД. Алгоритм Евклида}
-	
+
 % 21:00
 Рекурсия хорошо применяется при реализации алгоритма Евклида для поиска наибольшего общего делителя. Суть его заключается в том, что если $a$ и $b$ делятся на некоторое число, то и остаток от деления $a$ на $b$ также делится на это число. Благодаря этому можно переходить к исследованию делимости меньших чисел и рекурсивно применять к ним данный алгоритм, пока аналогичный остаток не станет равным нулю. 
 % 24:50
@@ -128,17 +75,17 @@
 Несложно заметить, что данная функция вызывается избыточное количество раз. Действительно, \texttt{fib(n - 2)} будет определенно при еще вычислении \texttt{fib(n - 1)}. С ростом количества вызовов $n$ количество операций будет увеличиваться пропорционально $2^n$. 
 
 \subsection*{Быстрое возведение в степень}
-	
+
 % 07:00
 Операция возведения в степень может быть записана следующим образом.
 
 \begin{tabular}{rl}
 	$a^n = $ &  $\left\{ 
-		\begin{tabular}{l}
-			$1,~\text{при}~n = 0$\\ 
-			$a\cdot a^{n - 1},~\text{при}~n \neq 0~\text{и}~n~ \text{нечетное}$\\
-			$(a^2)^{n/2},~\text{при}~n \neq 0~\text{и}~n~\text{четное}$\\ 
-		\end{tabular} \right. $ \\
+	\begin{tabular}{l}
+	$1,~\text{при}~n = 0$\\ 
+	$a\cdot a^{n - 1},~\text{при}~n \neq 0~\text{и}~n~ \text{нечетное}$\\
+	$(a^2)^{n/2},~\text{при}~n \neq 0~\text{и}~n~\text{четное}$\\ 
+	\end{tabular} \right. $ \\
 \end{tabular} 
 
 Последняя строчка дает возможность сократить количество этапов вдвое при рекурсивном вызове, если $n$ -- четное число. В случае, если $n$ степень двух, количество операций пропорционально $\log_2{n}$. 
@@ -212,4 +159,3 @@
 	\end{tabbing}
 }
 Стоит отметить, что количество вызовов такой функции будет крайне велико и важно не допустить достижения максимальной глубины рекурсии, разрешенной в Python. 
-\end{document}
