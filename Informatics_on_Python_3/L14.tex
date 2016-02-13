@@ -32,40 +32,48 @@
 Описанную выше открытую хэш-таблицу можно реализовать следующим образом.
 \texttt{
 	\begin{tabbing}
-		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3cm}\=\kill
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{6cm}\=\kill
 		Class MyDict:\\
 		\> N\_max = 100 \> \> \> \# максимальный размер таблицы\\
 		\\
 		\> def add(self, key, value):\\
 		\> \> i = hash(key) \% N\_max \\
 		\> \> j = 0\\
-		\> \> while j < len(self.\_M[i]): \hspace{1cm} \# пока i-й список не закончился\\ 
-		\> \> \> if self.\_M[i][j][0] == key: \hspace{1cm} \# ключ j-ого кортежа в i-ом списке.\\
-		\> \> \> \> self.\_M[i][j] = (key, value) \hspace{5mm} \# перезаписываем значение для ключа\\
+		\> \> while j < len(self.\_M[i]): \> \> \> \# пока i-й список не закончился\\ 
+		\> \> \> if self.\_M[i][j][0] == key: \> \> \# ключ j-ого кортежа в i-ом списке.\\
+		\> \> \> \> self.\_M[i][j] = (key, value)  \> \# перезаписываем значение для ключа\\
 		\> \> \> \> break\\
-		\> \> else: \hspace{5mm} \# вышли из цикла, но break не было\\
-		\> \> \> self.\_M[i].append((key, value)) \hspace{5mm} \# можно записать пару ключ-значение\\
+		\> \> else: \> \> \> \# вышли из цикла, но break не было\\
+		\> \> \> self.\_M[i].append((key, value)) \> \> \# можно записать пару ключ-значение\\
 		\\
 		\> def \_\_init\_\_(self, lst=[]):\\
-		\> \> self.\_M = [ [] for I in range(N\_max)] \hspace{1cm} \# список пустых списков\\
+		\> \> self.\_M = [ [] for I in range(N\_max)] \> \> \> \# список пустых списков\\
 		\> \> for i, value in lst: \hspace{1cm} \# бежит по парам ключ-значение поданного списка\\
-		\> \> \> self.add(key, value)\\
-		\\
+		\> \> \> self.add(key, value)
+	\end{tabbing}
+}
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{3.5cm}\=\kill
 		\> def get(self, key):\\
 		\> \> i = hash(key) \% N\_max\\
-		\> \> for k, v in self.\_M[i]: \hspace{1cm} \# поиск в i-ом списке пар\\
+		\> \> for k, v in self.\_M[i]: \> \> \> \# поиск в i-ом списке пар\\
 		\> \> \> if k == key:\\
 		\> \> \> \> return v\\
-		\> \> \> return None \hspace{1cm} \# хотя лучше вызвать исключение\\
-		\\
+		\> \> \> return None \>\> \# хотя лучше вызвать исключение
+	\end{tabbing}
+}
+\texttt{
+	\begin{tabbing}
+		\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{8mm}\=\hspace{5cm}\=\kill
 		\> def del(self, key):\\
 		\> \> i = hash(key) \% N\_max \\
 		\> \> j = 0\\
-		\> \> while j < len(self.\_M[i]): \hspace{1cm} \# пока i-й список не закончился\\ 
-		\> \> \> if self.\_M[i][j][0] == key: \hspace{1cm} \# ключ j-ого кортежа в i-ом списке.\\
-		\> \> \> \> self.\_M[i].pop(j) \hspace{1cm} \# удаляем пару ключ-значение\\
+		\> \> while j < len(self.\_M[i]): \>\>\> \# пока i-й список не закончился\\ 
+		\> \> \> if self.\_M[i][j][0] == key: \>\> \# ключ j-ого кортежа в i-ом списке.\\
+		\> \> \> \> self.\_M[i].pop(j) \hspace{1cm} \> \# удаляем пару ключ-значение\\
 		\> \> \> \> return\\
-		\> \> raise KeyError() \hspace{1cm} \# если удалять нечего		
+		\> \> raise KeyError() \hspace{1cm} \> \> \> \# если удалять нечего		
 	\end{tabbing}
 }
 
