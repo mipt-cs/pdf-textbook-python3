@@ -1,0 +1,98 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{tikz}
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc} 
+\usepackage[russian]{babel}
+\usepackage{cmap}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82} 
+
+\lstdefinestyle{customc}{
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=L,
+	xleftmargin=\parindent,
+	language=Python,
+	showstringspaces=false,
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{orange},
+}
+
+
+\lstset{escapechar=@,style=customc}
+
+% Так ссылки в PDF будут активны
+\usepackage[unicode]{hyperref}
+
+% вы сможете вставлять картинки командой \includegraphics[width=0.7\textwidth]{ИМЯ ФАЙЛА}
+% получается подключать, как минимум, файлы .pdf, .jpg, .png.
+\usepackage{graphicx}
+% Если вы хотите явно указать поля:
+\usepackage[margin=1in]{geometry}
+% Или если вы хотите задать поля менее явно (чем больше DIV, тем больше места под текст):
+% \usepackage[DIV=10]{typearea}
+
+\usepackage{fancyhdr}
+
+\newcommand{\bbR}{\mathbb R}%теперь вместо длинной команды \mathbb R (множество вещественных чисел) можно писать короткую запись \bbR. Вместо \bbR вы можете вписать любую строчку букв, которая начинается с '\'.
+\newcommand{\eps}{\varepsilon}
+\newcommand{\bbN}{\mathbb N}
+\newcommand{\dif}{\mathrm{d}}
+
+\pagestyle{fancy}
+\makeatletter % сделать "@" "буквой", а не "спецсимволом" - можно использовать "служебные" команды, содержащие @ в названии
+\fancyhead[L]{\footnotesize Информатика}%Это будет написано вверху страницы слева
+\fancyhead[R]{\footnotesize МФТИ}
+\fancyfoot[L]{\footnotesize \@author}%имя автора будет написано внизу страницы слева
+\fancyfoot[R]{\thepage}%номер страницы —- внизу справа
+\fancyfoot[C]{}%по центру внизу страницы пусто
+
+\renewcommand{\maketitle}{%
+	\noindent{\bfseries\scshape\large\@title\ \mdseries\upshape}\par
+	\noindent {\large\itshape\@author}
+	\vskip 2ex}
+\makeatother
+\def\dd#1#2{\frac{\partial#1}{\partial#2}}
+\def\ddd#1#2#3{\frac{\partial^2#1}{\partial#2\partial#3}}
+
+\title{Графы. I} 
+\author{Тимофей Хирьянов} 
+\date{27 февраля 2016 г.}
+
+\begin{document}
+	\maketitle
+	\section{Способы представления графа в памяти}
+		Существует три основных способа представления графа в памяти:
+		\begin{enumerate}
+			\item Список ребер
+			\item Матрица смежности
+			\item Список связности
+		\end{enumerate}
+		На практике граф обычно представляется в виде списка ребер. Ниже вы видите представления одного и того же графа разными способами.
+		
+		\subsection{Список ребер}
+			\lstinputlisting[language=Python]{listofedges.py}
+			Считывание списка ребер в список тривиально, поэтому опустим его.
+			
+		\subsection{Матрица смежности}
+			\lstinputlisting[language=Python]{matrix.py}
+			Считывание списка ребер в матрицу смежности:
+			\lstinputlisting[language=Python]{readmatrix.py}
+			
+		\subsection{Список связности}
+			\lstinputlisting[language=Python]{list.py}
+			\newpage
+			Перейдем от списка связности к списку ребер:
+			\lstinputlisting[language=Python]{createlistofedges.py}
+			Считывание списка ребер в список связности:
+			\lstinputlisting[language=Python]{readlist.py}
+	
+\end{document}
