@@ -92,10 +92,6 @@ class Tree:
                 node.parent.right = new_boss_node
 
 if __name__ == '__main__':
-    '''tree = Tree()
-    for x in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
-        tree.add_pair(x, ' ')
-    tree.print_tree()'''
 
     tree = Tree()
     for x in [4, 2, 1, 3, 6, 5, 7]:
