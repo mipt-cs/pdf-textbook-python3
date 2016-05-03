@@ -49,11 +49,11 @@
 
 \pagestyle{fancy}
 \makeatletter % сделать "@" "буквой", а не "спецсимволом" - можно использовать "служебные" команды, содержащие @ в названии
-\fancyhead[L]{\footnotesize Информатика}%Это будет написано вверху страницы слева
-\fancyhead[R]{\footnotesize МФТИ}
-\fancyfoot[L]{\footnotesize \@author}%имя автора будет написано внизу страницы слева
+\fancyhead[L]{\footnotesize Информатика\\ Внимание: конспект не проверялся преподавателями —- всегда используйте рекомендуемую литературу при подготовке к экзамену!}%Это будет написано вверху страницы слева
+\fancyhead[R]{}
+\fancyfoot[L]{}%имя автора будет написано внизу страницы слева
 \fancyfoot[R]{\thepage}%номер страницы —- внизу справа
-\fancyfoot[C]{}%по центру внизу страницы пусто
+\fancyfoot[C]{ Замечания и предложения просьба писать на \href{mailto:pulsar@phystech.edu}{pulsar@phystech.edu}}%по центру внизу страницы пусто
 
 \renewcommand{\maketitle}{%
 	\noindent{\bfseries\scshape\large\@title\ \mdseries\upshape}\par
