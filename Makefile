@@ -12,7 +12,7 @@ all: $(PDFS)
 %.pdf: PDFPREREQ = $(PDFNAME)/$(PDFNAME).tex
 
 %.pdf: $$(PDFPREREQ) 
-	cd $$( dirname $< ); $(LATEX) $(LATEXOPTS) $$( basename $< ); mv $$( basename -s .tex $< ).pdf ..; cd -
+	cd $$( dirname $< ); $(LATEX) $(LATEXOPTS) $$( basename $< ); mv $$( basename $< .tex ).pdf ..; cd -
 
 clean:
 	rm -f $(PDFS) */*.aux */*.log
