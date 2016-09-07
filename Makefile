@@ -1,17 +1,20 @@
 LATEX=pdflatex
 LATEX_OPTS=--halt-on-error --shell-escape --file-line-error
 
-
-PDFS := $(patsubst %.tex,%.pdf,$(wildcard *.tex))
+PDFS := $(patsubst %,%.pdf,$(shell find -name 'lection*' -type d ))
 
 default: all
 
 all: $(PDFS)
 
-%.pdf: %.tex
-	$(LATEX) $(LATEX_OPTS) $<
+.SECONDEXPANSION: 
+%.pdf: PDFNAME = $(basename $@)
+%.pdf: PDFPREREQ = $(PDFNAME)/$(PDFNAME).tex
+
+%.pdf: $$(PDFPREREQ) 
+	cd $$( dirname $< ); $(LATEX) $(LATEXOPTS) $$( basename $< ); mv $$( basename -s .tex $< ).pdf ..; cd -
 
 clean:
-	rm -f $(PDFS) *.aux *.log
+	rm -f $(PDFS) */*.aux */*.log
 
 .PHONY: default all clean
