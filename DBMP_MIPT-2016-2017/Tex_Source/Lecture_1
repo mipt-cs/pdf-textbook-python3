@@ -1,0 +1,67 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{euscript,mathrsfs}
+\usepackage{icomma}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{indentfirst}
+\usepackage{wasysym}
+\usepackage{geometry}
+
+\title{Лекция №1 \\
+{\bf \Huge Основы архитектуры компьютера}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{История развития}
+
+История развития ЭВМ уходит глубоко к истокам человечества, однако наибольший прогресс был в последние века.
+
+Кратко историю можно описать такой схемой:
+
+\begin{description}
+    \item[-1]
+    \item[0] Электрические ЭВМ (Конрад Цузе)(машина Z1)(релейные компьютеры)
+    \item[1] Ламповые ЭВМ, их главный недостаток: невысокая надежность и большие размеры
+    \item[2] Транзисторные ЭВМ
+    \item[3] ЭВМ на интегральных схемах
+    \item[4] ЭВМ на сверхбольших интегральных схемах ($=$чип, микропроцессор)
+\end{description}
+
+Здесь цифры показывают ''поколения''. Переходы $1\rightarrow2\rightarrow3\rightarrow$ сопровождаются \emph{уменьшением} размеров.
+
+\newpage
+
+\section{Принципы фон Неймана}
+
+Полная статья: {\it Von Neumann, J., & Godfrey, M. D. (1993). First Draft of a Report on the EDVAC. IEEE Annals of the History of Computing, 15(4), 27-75.}
+
+Принципы фон Неймана описывают то как именно должна быть ЭВМ. Джон опередил свое время, описав эти принципы.
+
+Кратко принципы таковы:
+
+\begin{enumerate}
+    \item Программируемость (выполнение последовательности действий)
+    \item Принцип двоичности: данные в двоичной системе \& существует машинный код (англ. \emph{binary code})
+    \item Однородность памяти (данные и машинный код лежат в одном устройстве памяти
+            \begin{description}
+            \item[\bf{!!!}] Есть и другая архитектура, так называемая \emph{гарвардскаая архитектура}, где машиннный код и данные лежат в разных областях (т.е. устройствах), это гарантирует чуть больше надежности.
+        \end{description}
+    \item Память произвольного доступа, т.е. единое адресное пространство ОЗУ (англ. \emph{RAM, random access memory})
+    \item Последовательное программное управление, минимальная адресная ячейка$=$байт
+    \begin{description}
+            \item[\bf{!!!}] Команда не весит один байт, иначе было бы только $2^8=256$ команд
+        \end{description}
+    \item Необходимость условного перехода
+\end{enumerate}
+
+
+\end{document}
