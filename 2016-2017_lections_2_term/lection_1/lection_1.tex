@@ -1,0 +1,322 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком % для pdfLatex
+\usepackage{cmap}					% поиск в~PDF
+\usepackage{mathtext} 				% русские буквы в~фомулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{indentfirst} 			% отступ 1 абзаца
+
+%%% Работа с русским языком % для XeLatex
+%\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+%\usepackage{fontspec}      %% подготавливает загрузку шрифтов Open Type, True Type и др.
+%\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}  %% свойства шрифтов по умолчанию
+%\setmainfont[Ligatures={TeX,Historic}]{Times New Roman} %% задаёт основной шрифт документа
+%\setsansfont{Comic Sans MS}                    %% задаёт шрифт без засечек
+%\setmonofont{Courier New}
+%\usepackage{indentfirst}
+%\frenchspacing
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools}
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+\usepackage{upgreek}
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в~тексте.
+
+%%% Страница
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}} % создание новой конанды \sgn (типо как \sin)
+\usepackage{csquotes} % ещё одна штука для цитат
+\newcommand{\pd}[2]{\ensuremath{\cfrac{\partial #1}{\partial #2}}} % частная производная
+\newcommand{\abs}[1]{\ensuremath{\left|#1\right|}} % модуль
+\renewcommand{\phi}{\ensuremath{\varphi}} % греческая фи
+\newcommand{\pogk}[1]{\!\left(\cfrac{\sigma_{#1}}{#1}\right)^{\!\!\!2}\!} % для погрешностей
+
+% Ссылки
+\usepackage{color} % подключить пакет color
+% выбрать цвета
+\definecolor{BlueGreen}{RGB}{49,152,255}
+\definecolor{Violet}{RGB}{120,80,120}
+% назначить цвета при подключении hyperref
+\usepackage[unicode, colorlinks, urlcolor=blue, linkcolor=blue, pagecolor=blue, citecolor=blue]{hyperref} %синие ссылки
+%\usepackage[unicode, colorlinks, urlcolor=black, linkcolor=black, pagecolor=black, citecolor=black]{hyperref} % для печати (отключить верхний!)
+
+
+%% Перенос знаков в~формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+	{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+\usepackage{multicol}
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в~таблице
+\usepackage{caption}
+\captionsetup{labelsep=period, labelfont=bf}
+
+%%% Оформление
+\usepackage{indentfirst} % Красная строка
+%\setlength{\parskip}{0.3cm} % отступы между абзацами
+%%% Название разделов
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+\renewcommand{\figurename}{\textbf{Рис.}}		%Чтобы вместо figure под рисунками писал "рис"
+\renewcommand{\tablename}{\textbf{Таблица}}		%Чтобы вместо table над таблицами писал Таблица
+
+%%% Теоремы
+\theoremstyle{plain} % Это стиль по умолчанию, его можно не переопределять.
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{proposition}[theorem]{Утверждение}
+
+\theoremstyle{definition} % "Определение"
+\newtheorem{definition}{Определение}[section]
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{problem}{Задача}[section]
+
+\theoremstyle{remark} % "Примечание"
+\newtheorem*{nonum}{Решение}
+\newtheorem{zamech}{Замечание}[theorem]
+
+%%% Правильные мат. символы для русского языка
+\renewcommand{\epsilon}{\ensuremath{\varepsilon}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand{\kappa}{\ensuremath{\varkappa}}
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\emptyset}{\varnothing}
+
+%%% Для лекций по инфе
+\usepackage{alltt}
+\newcounter{infa}[section]
+\newcounter{num}
+\definecolor{infa}{rgb}{0, 0.2, 0.89}
+\definecolor{infa1}{rgb}{0, 0.3, 1}
+\definecolor{grey}{rgb}{0.5, 0.5, 0.5}
+\newcommand{\tab}{\ \ \ }
+\newcommand{\com}[1]{{\color{grey}\##1}}
+\newcommand{\num}{\addtocounter{num}{1}\arabic{num}\tab}
+\newcommand{\defi}{{\color{infa}def}}
+\newcommand{\globali}{{\color{infa}global}}
+\newcommand{\ini}{{\color{infa}in}}
+\newcommand{\rangei}{{\color{infa}range}}
+\newcommand{\fori}{{\color{infa}for}}
+\newcommand{\ifi}{{\color{infa}if}}
+\newcommand{\elsei}{{\color{infa}else}}
+\newcommand{\printi}{{\color{infa1}print}}
+\newcommand{\enumeratei}{{\color{infa1}enumerate}}
+\newcommand{\maxi}{{\color{infa}max}}
+\newcommand{\classi}{{\color{infa}class}}
+\newcommand{\returni}{{\color{infa}return}}
+\newcommand{\elifi}{{\color{infa}elif}}
+\newenvironment{infa}[1]{
+	
+	\vspace{0.5cm}
+	\addtocounter{infa}{1}%
+	\noindent{\large \textbf{Программа №\thesection.\arabic{infa}.}\ \textbf{#1}}%
+	\begin{alltt}%
+	}{\end{alltt}
+	\setcounter{num}{0}
+	\vspace{0.1cm}}
+%Пример кода:
+%\begin{infa}{Поразрядная сортировка}
+%	\ \num \defi count_sort(a):\tab \com{определяет нашу функцию}
+%	\ \num \tab m = \maxi(a)+1
+%	\ \num \tab q = [0]*m
+%	\ \num \tab \fori x \ini a:
+%	\ \num \tab \tab q[x] += 1
+%	\ \num \tab pos = 0
+%	\ \num \tab \fori x \ini q:
+%	\ \num \tab \tab \fori i \ini \rangei(q[x]):
+%	\ \num \tab \tab \tab a[pos] = x
+%	\num \tab \tab \tab pos += 1
+%\end{infa}
+
+\usepackage[left=1.27cm,right=1.27cm,top=1.27cm,bottom=2cm]{geometry}
+%\hbox to\textwidth{команда колонтитула}
+\begin{document}
+\newcounter{lec}
+\newcommand{\lec}[1]{\addtocounter{lec}{1} \setcounter{section}{0}%
+\begin{center}
+{\LARGE ЛЕКЦИЯ \arabic{lec}%
+\vspace{2mm}%
+
+\textbf{#1}%
+}
+\end{center}
+}
+\newpage
+\
+\lec{Повторение}
+\section{Ссылочная модель данных}
+Ссылочная модель данных - объекты существуют независимо от времен.
+\begin{alltt}
+>>> 2+3
+5
+\end{alltt}
+Создаются два объекта типа int.
+\begin{alltt}
+2.__add__(3) - метод добавления
+\end{alltt}
+\begin{alltt}
+	x = 2+3 # x ссылается на объект 5
+	x = 'Hello' # возникает объект строки
+\end{alltt}
+После вывода результата объекты 2, 3, 5 удаляются, т.к. нет ссылки на эти объекты.
+Если x перестал ссылаться на 5, объект 5 уничтожается.
+\begin{alltt}
+x = 5
+y = x
+x = 'Hello'
+y = None
+\end{alltt}
+После того, как y начал ссылаться на None, объект 5 уничтожается.
+\begin{alltt}
+	x = (2+3+5)**5**5 # приоритет у возведения в степени
+\end{alltt}
+
+Т.е. в начале выполняется 5**5, а потом (2+3+5)**25.
+
+Начиная с версии Python 3.6, можно разделять числа так:
+\begin{alltt}
+x = 100_001
+y = 0xAF_DC
+\end{alltt}
+\section{Пространство имен}
+4 пространства: локальные, окружающие, глобальные, строенные (LEGB).
+
+y = 10*x+7
+Сначала будет происходить поиск локального x, затем в надпространстве, затем в глобальных, в последнюю очередь - во встроенных переменных.
+
+Если написать 
+max = 10,
+то функция max перестанет работать.
+
+Пример:
+\begin{infa}{}
+\num \defi f(A):
+\num \tab A = A + 10 \com{если написать A += 10 ошибки не будет}
+\num B = [1, 2, 3]
+\num f(B)
+\num \printi(*B) \com{1 2 3}
+\end{infa}
+
+Строки и числа --- неизменяемые объекты.
+f является именем объекта functional.
+
+def --- по сути это операция создания нового объекта.
+
+Любой вызов функции порождает свое пространство имен, которое перестанет существовать после выполнения return. 
+
+A начинает ссылаться на [1, 2, 3]. После конкатинации A начинает ссылаться на [1, 2, 3, 4]. A ссылается на глобальный объект, и начинает ссылаться на локальный объект. После return уничтожается A и список [1, 2, 3, 4].
+
+Или можно записать так:
+\begin{infa}{}
+	\num \defi f(A):
+	\num \tab A.append(10)
+	\num B = [1, 2, 3]
+	\num f(B)
+	\num \printi(*B) \com{1 2 3}
+\end{infa}
+
+Функция должна что-то возвращать. В частном случае, можно возвращать несколько параметров. Нарушить ссылочную модель можно только "залезая"\ в глобальные имена.
+
+\begin{infa}{}
+	\num d=1
+	\num \defi f(A):
+	\num \tab \globali d
+	\num \tab A.append(d)
+	\num \tab d = d + 1
+\end{infa}
+
+
+
+
+
+
+
+\section{ООП}
+Тип тоже является объектом типа тип. 
+\begin{infa}{}
+\num \classi Base:
+\num \tab x = 10
+\num \tab \defi g(self, x0):
+\num \tab \tab self.x = x0
+\num b = Base()
+\num \printi(b.x)
+\end{infa}
+
+\begin{infa}{}
+	\num \classi Base:
+	\num \tab x = 10
+	\num \tab \defi g(self, x0)
+	\num \tab \tab self.x += x0
+	\num b = Base()
+	\num \printi(b.x)
+\end{infa}
+
+Нужно создавать атрибуты только в методе init!
+
+\section{Элементы функционального программирования}
+
+\subsection{Функция map}
+\begin{alltt}
+x, y, z = map(int, input().split()) \com{считывание трех чисел с клавиатуры}
+\end{alltt}
+
+Функция map применяет к каждому объекту функцию, которую мы написали. В нее же можно написать свою функцию:
+\begin{alltt}
+x, y, z = map(lambda x: int(x)**2, input().split())
+	A == list(map(int, range(100)))
+	B = map(float, int(x) for x in input().split())
+\end{alltt}
+
+map возвращает объект типа map.
+
+\subsection{Применение lambda-функций}
+$x^2+e^{1/x}+\ln x$
+\begin{alltt}
+x = decompoused_value # нужно объявлять функцию
+(lambda x: x**2 + exp(1/x)+ln(x))(2) #хороший пример использования lambda
+\end{alltt}
+
+\subsection{Функция enumerate}
+\begin{infa}{}
+\num A = [10, 20, 30]
+\num \fori i,x \ini \enumeratei(A): \com{А используется как итерируемый объект}
+\num \tab \printi(i,x) \com{(0,10), (1,20), (2,30) - эту конструкцию нам вернет enumerate(A)}
+\num \tab x = x + 1	\com{Значение в массиве не изменилось, мы только испортили х}
+\end{infa}
+\subsection{Функция zip}
+
+\begin{alltt}
+A = [1, 2, 3, 4, 5]
+B = 'Hello'
+c = list(zip(A,B)) \com{результат есть zip-object}
+\end{alltt} 
+
+
+
+
+
+
+
+\end{document} 
