@@ -1,7 +1,7 @@
 LATEX=pdflatex
 LATEX_OPTS=--halt-on-error --shell-escape --file-line-error
 
-PDFS := $(patsubst %,%.pdf,$(shell find -name 'lection*' -type d ))
+PDFS := $(patsubst %,%.pdf,$(shell find -maxdepth 1 -name 'lection*' -type d))
 
 default: all
 
