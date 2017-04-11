@@ -1,0 +1,300 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком % для pdfLatex
+\usepackage{cmap}					% поиск в~PDF
+\usepackage{mathtext} 				% русские буквы в~фомулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{indentfirst} 			% отступ 1 абзаца
+
+%%% Работа с русским языком % для XeLatex
+%\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+%\usepackage{fontspec}      %% подготавливает загрузку шрифтов Open Type, True Type и др.
+%\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}  %% свойства шрифтов по умолчанию
+%\setmainfont[Ligatures={TeX,Historic}]{Times New Roman} %% задаёт основной шрифт документа
+%\setsansfont{Comic Sans MS}                    %% задаёт шрифт без засечек
+%\setmonofont{Courier New}
+%\usepackage{indentfirst}
+%\frenchspacing
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools}
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+\usepackage{upgreek}
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в~тексте.
+
+%%% Страница
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}} % создание новой конанды \sgn (типо как \sin)
+\usepackage{csquotes} % ещё одна штука для цитат
+\newcommand{\pd}[2]{\ensuremath{\cfrac{\partial #1}{\partial #2}}} % частная производная
+\newcommand{\abs}[1]{\ensuremath{\left|#1\right|}} % модуль
+\renewcommand{\phi}{\ensuremath{\varphi}} % греческая фи
+\newcommand{\pogk}[1]{\!\left(\cfrac{\sigma_{#1}}{#1}\right)^{\!\!\!2}\!} % для погрешностей
+
+% Ссылки
+\usepackage{color} % подключить пакет color
+% выбрать цвета
+\definecolor{BlueGreen}{RGB}{49,152,255}
+\definecolor{Violet}{RGB}{120,80,120}
+% назначить цвета при подключении hyperref
+\usepackage[unicode, colorlinks, urlcolor=blue, linkcolor=blue, pagecolor=blue, citecolor=blue]{hyperref} %синие ссылки
+%\usepackage[unicode, colorlinks, urlcolor=black, linkcolor=black, pagecolor=black, citecolor=black]{hyperref} % для печати (отключить верхний!)
+
+
+%% Перенос знаков в~формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+	{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+\usepackage{multicol}
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в~таблице
+\usepackage{caption}
+\captionsetup{labelsep=period, labelfont=bf}
+
+%%% Оформление
+\usepackage{indentfirst} % Красная строка
+%\setlength{\parskip}{0.3cm} % отступы между абзацами
+%%% Название разделов
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+\renewcommand{\figurename}{\textbf{Рис.}}		%Чтобы вместо figure под рисунками писал "рис"
+\renewcommand{\tablename}{\textbf{Таблица}}		%Чтобы вместо table над таблицами писал Таблица
+
+%%% Теоремы
+\theoremstyle{plain} % Это стиль по умолчанию, его можно не переопределять.
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{proposition}[theorem]{Утверждение}
+
+\theoremstyle{definition} % "Определение"
+\newtheorem{definition}{Определение}[section]
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{problem}{Задача}[section]
+
+\theoremstyle{remark} % "Примечание"
+\newtheorem*{nonum}{Решение}
+\newtheorem{zamech}{Замечание}[theorem]
+
+%%% Правильные мат. символы для русского языка
+\renewcommand{\epsilon}{\ensuremath{\varepsilon}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand{\kappa}{\ensuremath{\varkappa}}
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\emptyset}{\varnothing}
+
+%%% Для лекций по инфе
+\usepackage{tikz}  
+\usetikzlibrary{graphs}
+\usepackage{alltt}
+\newcounter{infa}[section]
+\newcounter{num}
+\definecolor{infa}{rgb}{0, 0.2, 0.89}
+\definecolor{infa1}{rgb}{0, 0.3, 1}
+\definecolor{grey}{rgb}{0.5, 0.5, 0.5}
+\newcommand{\tab}{\ \ \ }
+\newcommand{\com}[1]{{\color{grey}\# #1}}
+\newcommand{\num}{\addtocounter{num}{1}\arabic{num}\tab}
+\newcommand{\defi}{{\color{infa}def}}
+\newcommand{\globali}{{\color{infa}global}}
+\newcommand{\ini}{{\color{infa}in}}
+\newcommand{\rangei}{{\color{infa}range}}
+\newcommand{\fori}{{\color{infa}for}}
+\newcommand{\ifi}{{\color{infa}if}}
+\newcommand{\elsei}{{\color{infa}else}}
+\newcommand{\printi}{{\color{infa1}print}}
+\newcommand{\enumeratei}{{\color{infa1}enumerate}}
+\newcommand{\maxi}{{\color{infa}max}}
+\newcommand{\classi}{{\color{infa}class}}
+\newcommand{\returni}{{\color{infa}return}}
+\newcommand{\elifi}{{\color{infa}elif}}
+\newcommand{\seti}{{\color{infa}set}}
+\newcommand{\noti}{{\color{infa}not}}
+\newcommand{\dicti}{{\color{infa}dict}}
+\newcommand{\zipi}{{\color{infa}zip}}
+\newcommand{\chri}{{\color{infa}chr}}
+\newcommand{\ordi}{{\color{infa}ord}}
+\newcommand{\leni}{{\color{infa}len}}
+\newcommand{\deli}{{\color{infa}del}}
+\newcommand{\sortedi}{{\color{infa}sorted}}
+\newcommand{\keyi}{{\color{infa}key}}
+\newcommand{\lambdai}{{\color{infa}lambda}}
+\newcommand{\inti}{{\color{infa}int}}
+\newcommand{\inputi}{{\color{infa}input}}
+\newcommand{\isi}{{\color{infa}is}}
+\newcommand{\Nonei}{{\color{infa}None}}
+\newcommand{\whilei}{{\color{infa}while}}
+\newcommand{\andi}{{\color{infa}and}}
+\newcommand{\fromi}{{\color{infa}from}}
+\newcommand{\importi}{{\color{infa}import}}
+\newcommand{\continuei}{{\color{infa}continue}}
+\newcommand{\mapi}{{\color{infa}map}}
+\newcommand{\Falsei}{{\color{infa1}False}}
+\newcommand{\listi}{{\color{infa}list}}
+\newcommand{\Truei}{{\color{infa1}True}}
+\newcommand{\mini}{{\color{infa1}min}}
+\newcommand{\breaki}{{\color{infa1}break}}
+
+
+\newenvironment{infa}[1]{
+	
+	\vspace{0.5cm}
+	\addtocounter{infa}{1}%
+	\noindent{\large \textbf{Программа №\thesection.\arabic{infa}.}\ \textbf{#1}}%
+	\begin{alltt}%
+	}{\end{alltt}
+	\setcounter{num}{0}
+	\vspace{0.1cm}}
+\newenvironment{infanoname}{
+	
+	%\vspace{0.5cm}
+	%\addtocounter{infa}{1}%
+	%\noindent{\large \textbf{Программа №\thesection.\arabic{infa}.}\ \textbf{#1}}%
+	\begin{alltt}%
+	}{\end{alltt}
+	\setcounter{num}{0}
+	\vspace{0.1cm}}
+
+\usepackage{animate} % Для добавления гифок
+\usepackage{xmpmulti}
+%Пример кода:
+%\begin{infa}{Поразрядная сортировка}
+%	\ \num \defi count_sort(a):\tab \com{определяет нашу функцию}
+%	\ \num \tab m = \maxi(a)+1
+%	\ \num \tab q = [0]*m
+%	\ \num \tab \fori x \ini a:
+%	\ \num \tab \tab q[x] += 1
+%	\ \num \tab pos = 0
+%	\ \num \tab \fori x \ini q:
+%	\ \num \tab \tab \fori i \ini \rangei(q[x]):
+%	\ \num \tab \tab \tab a[pos] = x
+%	\num \tab \tab \tab pos += 1
+%\end{infa}
+
+\usepackage[left=1.27cm,right=1.27cm,top=1.27cm,bottom=2cm]{geometry}
+%\hbox to\textwidth{команда колонтитула}
+
+\usepackage{verbatim}
+\begin{document}
+\newcounter{lec}
+\newcommand{\lec}[1]{\addtocounter{lec}{1} \setcounter{section}{0}%
+\begin{center}
+{\LARGE ЛЕКЦИЯ \arabic{lec}%
+\vspace{2mm}%
+
+\textbf{#1}%
+}
+\end{center}
+}
+\newpage
+\
+\setcounter{lec}{22}
+\lec{Двоичное дерево поиска. Продолжение.}
+\section{Класс Дерево. Продолжение.}
+%Будет разумным погрузить класс звена в дерево
+\begin{infa}{Класс Дерево}
+\ \num \classi Tree:
+\ \num \tab \classi Node: \com{Класс в классе можно делать, т.к. в классе описано свое\\\phantom{12\ \ \ \ \ \ \ } пространство имен}
+\ \num \tab \tab \defi __init__(self, data):
+\ \num \tab \tab \tab self.parent = \Nonei
+\ \num \tab \tab \tab self.left = \Nonei
+\ \num \tab \tab \tab self.right = \Nonei
+\ \num \tab \tab \tab self.key = data
+\ \num \tab \defi __init__(self):
+\ \num \tab \tab self.root = \Nonei
+\num \tab \defi find(self, data):
+\num \tab \tab p = self.root
+\num \tab \tab \whilei p \isi \noti \Nonei \andi p.key != data: \com{Важна последовательность\\\phantom{12\ \ \ \ \ \ \ } написаний условий, т.к. может быть ошибка при проверке ключа}
+\num \tab \tab \tab \ifi data > p.key:
+\num \tab \tab \tab \tab p = p.right
+\num \tab \tab \tab \elsei:
+\num \tab \tab \tab \tab p = p.left
+\num \tab \tab \returni p
+\num \tab \defi insert(self, data):
+\num \tab \tab p = self.find(data) \com{Одно и то же число не может храниться дважды, \\\phantom{12\ \ \ \ \ \ \ }как в множестве, но значения могут повторяться}
+\num \tab \tab \ifi p \isi \noti \Nonei:
+\num \tab \tab \tab \returni
+\num \tab \tab node = Tree.Node(data)
+\num \tab \tab \ifi self.root \isi \Nonei:
+\num \tab \tab \tab self.root = node
+\num \tab \tab \tab \returni
+\num \tab \tab p = self.root
+\num \tab \tab \whilei \Truei:
+\num \tab \tab \tab \ifi data < p.key:
+\num \tab \tab \tab \tab \ifi p.left \isi \Nonei:
+\num \tab \tab \tab \tab \tab p.left = node
+\num \tab \tab \tab \tab \tab node.parent = p
+\num \tab \tab \tab \tab \tab \breaki
+\num \tab \tab \tab \tab \elsei:
+\num \tab \tab \tab \tab \tab p = p.left 
+\num \tab \tab \tab \elsei:
+\num \tab \tab \tab \tab \ifi p.right \isi \Nonei:
+\num \tab \tab \tab \tab \tab p.right = node
+\num \tab \tab \tab \tab \tab node.parent = p
+\num \tab \tab \tab \tab \tab \breaki
+\num \tab \tab \tab \tab \elsei:
+\num \tab \tab \tab \tab \tab p = p.right
+\end{infa}
+\section{Балансировка дерева}
+Двоичное дерево поиска \textsf{сбалансированно}, если для каждой его вершины высота левого и правого поддерева отличаются не более чем на единицу.
+	
+%нарисуем закошеное дерево 
+\textbf{Инвариант}: та вершина, которая левее других вершин, должна остаться левее всех вершин, т.е двигать вверх--вниз вершины можно, но влево--вправо двигать нельзя, иначе нарушится последовательность чисел.
+
+Алгоритм балансировки подробно описан в \href{https://ru.wikipedia.org/wiki/%D0%90%D0%92%D0%9B-%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE#.D0.91.D0.B0.D0.BB.D0.B0.D0.BD.D1.81.D0.B8.D1.80.D0.BE.D0.B2.D0.BA.D0.B0}{википедии}.
+
+\textsf{АВЛ--дерево} --- сбалансированное по высоте двоичное дерево поиска: для каждой его вершины высота её двух поддеревьев различается не более чем на 1.
+
+
+\textsf{Красно--чёрное дерево} --- это одно из самобалансирующихся двоичных деревьев поиска, гарантирующих логарифмический рост высоты дерева от числа узлов и быстро выполняющее основные операции дерева поиска: добавление, удаление и поиск узла. Сбалансированность достигается за счёт введения дополнительного атрибута узла дерева --- «цвета». Этот атрибут может принимать одно из двух возможных значений --- «чёрный» или «красный».
+
+\textbf{Свойства} красно--черного дерева:
+\begin{enumerate}
+	\item Узел либо красный, либо чёрный.
+	\item Корень --- чёрный. (В других определениях это правило иногда опускается. Это правило слабо влияет на анализ, так как корень всегда может быть изменен с красного на чёрный, но не обязательно наоборот).
+	\item Все листья --- чёрные.
+	\item Оба потомка каждого красного узла --- чёрные.
+	\item Всякий простой путь от данного узла до любого листового узла, являющегося его потомком, содержит одинаковое число чёрных узлов.
+\end{enumerate}
+
+
+
+
+
+
+
+
+%\begin{comment}
+\begin{center}
+	\vfill \emph{{\small Г. С. Демьянов, \href{https://vk.com/id37346992}{VK}\\
+С. С. Клявинек, \href{https://vk.com/id85132547}{VK}
+}}
+\end{center}
+%\end{comment}
+
+
+
+
+
+\end{document} 
