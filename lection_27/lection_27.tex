@@ -1,0 +1,263 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком % для pdfLatex
+\usepackage{cmap}					% поиск в~PDF
+\usepackage{mathtext} 				% русские буквы в~фомулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{indentfirst} 			% отступ 1 абзаца
+
+%%% Работа с русским языком % для XeLatex
+%\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+%\usepackage{fontspec}      %% подготавливает загрузку шрифтов Open Type, True Type и др.
+%\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}  %% свойства шрифтов по умолчанию
+%\setmainfont[Ligatures={TeX,Historic}]{Times New Roman} %% задаёт основной шрифт документа
+%\setsansfont{Comic Sans MS}                    %% задаёт шрифт без засечек
+%\setmonofont{Courier New}
+%\usepackage{indentfirst}
+%\frenchspacing
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools}
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+\usepackage{upgreek}
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в~тексте.
+
+%%% Страница
+\usepackage{extsizes} % Возможность сделать 14-й шрифт
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}} % создание новой конанды \sgn (типо как \sin)
+\usepackage{csquotes} % ещё одна штука для цитат
+\newcommand{\pd}[2]{\ensuremath{\cfrac{\partial #1}{\partial #2}}} % частная производная
+\newcommand{\abs}[1]{\ensuremath{\left|#1\right|}} % модуль
+\renewcommand{\phi}{\ensuremath{\varphi}} % греческая фи
+\newcommand{\pogk}[1]{\!\left(\cfrac{\sigma_{#1}}{#1}\right)^{\!\!\!2}\!} % для погрешностей
+
+% Ссылки
+\usepackage{color} % подключить пакет color
+% выбрать цвета
+\definecolor{BlueGreen}{RGB}{49,152,255}
+\definecolor{Violet}{RGB}{120,80,120}
+% назначить цвета при подключении hyperref
+\usepackage[unicode, colorlinks, urlcolor=blue, linkcolor=blue, pagecolor=blue, citecolor=blue]{hyperref} %синие ссылки
+%\usepackage[unicode, colorlinks, urlcolor=black, linkcolor=black, pagecolor=black, citecolor=black]{hyperref} % для печати (отключить верхний!)
+
+
+%% Перенос знаков в~формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+	{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+\usepackage{multicol}
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в~таблице
+\usepackage{caption}
+\captionsetup{labelsep=period, labelfont=bf}
+
+%%% Оформление
+\usepackage{indentfirst} % Красная строка
+%\setlength{\parskip}{0.3cm} % отступы между абзацами
+%%% Название разделов
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+\renewcommand{\figurename}{\textbf{Рис.}}		%Чтобы вместо figure под рисунками писал "рис"
+\renewcommand{\tablename}{\textbf{Таблица}}		%Чтобы вместо table над таблицами писал Таблица
+
+%%% Теоремы
+\theoremstyle{plain} % Это стиль по умолчанию, его можно не переопределять.
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{proposition}[theorem]{Утверждение}
+
+\theoremstyle{definition} % "Определение"
+\newtheorem{definition}{Определение}[section]
+\newtheorem{corollary}{Следствие}[theorem]
+\newtheorem{problem}{Задача}[section]
+
+\theoremstyle{remark} % "Примечание"
+\newtheorem*{nonum}{Решение}
+\newtheorem{zamech}{Замечание}[theorem]
+
+%%% Правильные мат. символы для русского языка
+\renewcommand{\epsilon}{\ensuremath{\varepsilon}}
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand{\kappa}{\ensuremath{\varkappa}}
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\emptyset}{\varnothing}
+
+%%% Для лекций по инфе
+\usepackage{tikz}  
+\usetikzlibrary{graphs}
+\usepackage{alltt}
+\newcounter{infa}[section]
+\newcounter{num}
+\definecolor{infa}{rgb}{0, 0.2, 0.89}
+\definecolor{infa1}{rgb}{0, 0.3, 1}
+\definecolor{grey}{rgb}{0.5, 0.5, 0.5}
+\newcommand{\tab}{\ \ \ }
+\newcommand{\com}[1]{{\color{grey}\# #1}}
+\newcommand{\num}{\addtocounter{num}{1}\arabic{num}\tab}
+\newcommand{\defi}{{\color{infa}def}}
+\newcommand{\globali}{{\color{infa}global}}
+\newcommand{\ini}{{\color{infa}in}}
+\newcommand{\rangei}{{\color{infa}range}}
+\newcommand{\fori}{{\color{infa}for}}
+\newcommand{\ifi}{{\color{infa}if}}
+\newcommand{\elsei}{{\color{infa}else}}
+\newcommand{\printi}{{\color{infa1}print}}
+\newcommand{\enumeratei}{{\color{infa1}enumerate}}
+\newcommand{\maxi}{{\color{infa}max}}
+\newcommand{\classi}{{\color{infa}class}}
+\newcommand{\returni}{{\color{infa}return}}
+\newcommand{\elifi}{{\color{infa}elif}}
+\newcommand{\seti}{{\color{infa}set}}
+\newcommand{\noti}{{\color{infa}not}}
+\newcommand{\dicti}{{\color{infa}dict}}
+\newcommand{\zipi}{{\color{infa}zip}}
+\newcommand{\chri}{{\color{infa}chr}}
+\newcommand{\ordi}{{\color{infa}ord}}
+\newcommand{\leni}{{\color{infa}len}}
+\newcommand{\deli}{{\color{infa}del}}
+\newcommand{\sortedi}{{\color{infa}sorted}}
+\newcommand{\keyi}{{\color{infa}key}}
+\newcommand{\lambdai}{{\color{infa}lambda}}
+\newcommand{\inti}{{\color{infa}int}}
+\newcommand{\inputi}{{\color{infa}input}}
+\newcommand{\isi}{{\color{infa}is}}
+\newcommand{\Nonei}{{\color{infa}None}}
+\newcommand{\whilei}{{\color{infa}while}}
+\newcommand{\andi}{{\color{infa}and}}
+\newcommand{\fromi}{{\color{infa}from}}
+\newcommand{\importi}{{\color{infa}import}}
+\newcommand{\continuei}{{\color{infa}continue}}
+\newcommand{\mapi}{{\color{infa}map}}
+\newcommand{\Falsei}{{\color{infa1}False}}
+\newcommand{\listi}{{\color{infa}list}}
+\newcommand{\Truei}{{\color{infa1}True}}
+\newcommand{\mini}{{\color{infa1}min}}
+\newcommand{\breaki}{{\color{infa1}break}}
+
+
+\newenvironment{infa}[1]{
+	
+	\vspace{0.5cm}
+	\addtocounter{infa}{1}%
+	\noindent{\large \textbf{Программа №\thesection.\arabic{infa}.}\ \textbf{#1}}%
+	\begin{alltt}%
+	}{\end{alltt}
+	\setcounter{num}{0}
+	\vspace{0.1cm}}
+\newenvironment{infanoname}{
+	
+	%\vspace{0.5cm}
+	%\addtocounter{infa}{1}%
+	%\noindent{\large \textbf{Программа №\thesection.\arabic{infa}.}\ \textbf{#1}}%
+	\begin{alltt}%
+	}{\end{alltt}
+	\setcounter{num}{0}
+	\vspace{0.1cm}}
+
+\usepackage{animate} % Для добавления гифок
+\usepackage{xmpmulti}
+%Пример кода:
+%\begin{infa}{Поразрядная сортировка}
+%	\ \num \defi count_sort(a):\tab \com{определяет нашу функцию}
+%	\ \num \tab m = \maxi(a)+1
+%	\ \num \tab q = [0]*m
+%	\ \num \tab \fori x \ini a:
+%	\ \num \tab \tab q[x] += 1
+%	\ \num \tab pos = 0
+%	\ \num \tab \fori x \ini q:
+%	\ \num \tab \tab \fori i \ini \rangei(q[x]):
+%	\ \num \tab \tab \tab a[pos] = x
+%	\num \tab \tab \tab pos += 1
+%\end{infa}
+
+\usepackage[left=1.27cm,right=1.27cm,top=1.27cm,bottom=2cm]{geometry}
+%\hbox to\textwidth{команда колонтитула}
+
+\usepackage{verbatim}
+\begin{document}
+\newcounter{lec}
+\newcommand{\lec}[1]{\addtocounter{lec}{1} \setcounter{section}{0}%
+\begin{center}
+{\LARGE ЛЕКЦИЯ \arabic{lec}%
+\vspace{2mm}%
+
+\textbf{#1}%
+}
+\end{center}
+}
+\newpage
+\
+\setcounter{lec}{26}
+\lec{Автоматы}
+\section{Машина Тьюринга}
+Это абстрактный исполнитель, живущий на бесконечной ленте, в клетках которой находятся буквы $\alpha$ принадлежащие фиксированному алфавиту A. Каретка машины Тьюринга может двигаться по ленте влево или вправо. Каретка может видеть, что нарисовано на ленте (на текущей клетке). Также у нее есть возможность изменять символы на ленте, т.е. она может записать, изменить. А также у нее есть состояние q. При этом это состояние принадлежит множеству допустимых состояний Q. Подмножество состояний --- состояние останова (остановки). Это подмножество конечно. Поведение этой машины детерминированно (оно задается увиденным символом и предыдущим состоянием). Она из исходного состояния переходит в новое состояние, в котором определено: 1) Состояние системы 2) Считанный символ 3) Действие.
+
+Множества Q и A конечные. Возможно очень большие, но конечные. Мощность множества --- число конечных состояний в нем.
+
+Программа, которую мы написали, не хранится нигде. Типа в памяти каретки. Нужно её куда--то записать. Самое простое --- написать не ленте. Тогда каретка, которая едет на двух лентах сразу --- универсальная (программируемая) машина Тьюринга. О скорости работы нет разговора. Есть вопрос о вычислимости алгоритма.
+\section{Вычислимость функций (алгоритмов)}
+Что по сути такое алгоритм? Есть определенные возможные входные данные. Есть множество значений --- множество возможных результатов. Алгоритм --- своего рода функция, которая переводит множество определения в множество значений. Но невычислимые функции. Вычислимые функции (алгоритмы) --- это алгоритмы. Функции называются вычислимыми, если есть возможность посчитать её через машину Тьюринга. То, что мы называем раличными алгоритмами (все виды сортировок) --- это, с точки зрения вычислимости - один алгоритм. Нам ведь не важен путь (как и не важна скорость). Нам важно, что есть возможность получить результат, не более того. А какие алгоритмы невычислимые? Например, доказано, что нельзя вычислить вычислимость программы. Т.е. невозможно написать программу, которая посчитает, закончится программа или нет.
+
+Исполнители А и В называются алгоритмически эквивалентными, если можно сэмулировать А на В и В на А.
+
+\section{Клеточные автоматы. Игра жизнь Джона Конвая}
+Простейшие автоматы --- это клетки, живущие не линии. В клетках --- нули и единицы. Состояние клетки зависит только от самой клетки и от двух ее ближайших соседей. В каждый следующий момент времени клетка меняет свое состояние в зависимости от своего и соседей состояний. При этом для всех клеток алгоритмы одинаковы. Всего есть 256 клеточных автоматов (возможных комбинаций для данных состояний триад клеток). Среди них есть и совсем простые. Интересны несколько из них. Одно --- правило 30, т.к. порождает случайные хаотические структуры. Также есть правила жизни Джона Конвея. Если клетка была жива, то остается живой при 2 или 3 соседях. А если была мертва, то оживает при наличии трех соседей.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+	\vfill \emph{{\small Г. С. Демьянов, \href{https://vk.com/id37346992}{VK}\\
+С. С. Клявинек, \href{https://vk.com/id85132547}{VK}\\
+А. С. Кожарин, \href{https://vk.com/id92540660}{VK}
+}}
+\end{center}
+\end{document} 
